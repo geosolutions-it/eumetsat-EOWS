@@ -1,0 +1,4 @@
+ows?service=WCS&version=2.0.1&request=DescribeCoverage&coverageId=MET10_RGBAirmass_PlateCarree&AUTHKEY=5017850b-3331-48dc-8af1-6db99fec2c6c	200	application/xml
+ows?service=WCS&version=2.0.1&request=DescribeCoverage&coverageId=MET9_RSS_RGBNatColour_PlateCarree&AUTHKEY=5017850b-3331-48dc-8af1-6db99fec2c6c	200	application/xml
+ows?service=WCS&version=2.0.1&request=DescribeCoverage&coverageId=sst_composition2&AUTHKEY=5017850b-3331-48dc-8af1-6db99fec2c6c	200	application/xml
+ows?service=WCS&version=2.0.1&request=DescribeCoverage&coverageId=amv_composition&AUTHKEY=5017850b-3331-48dc-8af1-6db99fec2c6c	200	application/xml

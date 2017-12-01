@@ -1,0 +1,6 @@
+ows?SERVICE=WMS&REQUEST=DescribeLayer&VERSION=1.1.1&LAYERS=eumetsat%3AMET10_RGBAirmass_PlateCarree&AUTHKEY=5017850b-3331-48dc-8af1-6db99fec2c6c
+ows?SERVICE=WMS&REQUEST=DescribeLayer&VERSION=1.1.1&LAYERS=eumetsat%3AMET9_RSS_RGBNatColour_PlateCarree&AUTHKEY=5017850b-3331-48dc-8af1-6db99fec2c6c
+ows?SERVICE=WMS&REQUEST=DescribeLayer&VERSION=1.1.1&LAYERS=eumetsat%3Asst_composition2&AUTHKEY=5017850b-3331-48dc-8af1-6db99fec2c6c
+ows?SERVICE=WMS&REQUEST=DescribeLayer&VERSION=1.1.1&LAYERS=eumetsat%3Aamv_composition&AUTHKEY=5017850b-3331-48dc-8af1-6db99fec2c6c
+ows?SERVICE=WMS&REQUEST=DescribeLayer&VERSION=1.1.1&LAYERS=eumetsat%3Awind_ascat_thinned&AUTHKEY=5017850b-3331-48dc-8af1-6db99fec2c6c
+ows?SERVICE=WMS&REQUEST=DescribeLayer&VERSION=1.1.1&LAYERS=eumetsat%3Awind_ascat_reduced&AUTHKEY=5017850b-3331-48dc-8af1-6db99fec2c6c
