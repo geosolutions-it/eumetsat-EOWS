@@ -1,0 +1,6 @@
+ows?SERVICE=WMS&REQUEST=DescribeLayer&VERSION=1.1.1&LAYERS=eumetsat%3AMET10_RGBAirmass_PlateCarree
+ows?SERVICE=WMS&REQUEST=DescribeLayer&VERSION=1.1.1&LAYERS=eumetsat%3AMET9_RSS_RGBNatColour_PlateCarree
+ows?SERVICE=WMS&REQUEST=DescribeLayer&VERSION=1.1.1&LAYERS=eumetsat%3Asst_composition2
+ows?SERVICE=WMS&REQUEST=DescribeLayer&VERSION=1.1.1&LAYERS=eumetsat%3Aamv_composition
+ows?SERVICE=WMS&REQUEST=DescribeLayer&VERSION=1.1.1&LAYERS=eumetsat%3Awind_ascat_thinned
+ows?SERVICE=WMS&REQUEST=DescribeLayer&VERSION=1.1.1&LAYERS=eumetsat%3Awind_ascat_reduced

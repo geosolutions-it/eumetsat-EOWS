@@ -1,0 +1,4 @@
+ows?service=WCS&version=2.0.1&request=DescribeCoverage&coverageId=MET10_RGBAirmass_PlateCarree	200	application/xml
+ows?service=WCS&version=2.0.1&request=DescribeCoverage&coverageId=MET9_RSS_RGBNatColour_PlateCarree	200	application/xml
+ows?service=WCS&version=2.0.1&request=DescribeCoverage&coverageId=sst_composition2	200	application/xml
+ows?service=WCS&version=2.0.1&request=DescribeCoverage&coverageId=amv_composition	200	application/xml

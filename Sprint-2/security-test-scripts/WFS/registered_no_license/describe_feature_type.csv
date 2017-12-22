@@ -1,0 +1,2 @@
+ows?request=DescribeFeatureType&SERVICE=WFS&VERSION=1.1.0&TYPENAME=eumetsat:wind_ascat_thinned&AUTHKEY=60460c8d-4ed0-40b9-a5f6-24e992ebb42a
+ows?request=DescribeFeatureType&SERVICE=WFS&VERSION=1.1.0&TYPENAME=eumetsat:wind_ascat_reduced&AUTHKEY=60460c8d-4ed0-40b9-a5f6-24e992ebb42a

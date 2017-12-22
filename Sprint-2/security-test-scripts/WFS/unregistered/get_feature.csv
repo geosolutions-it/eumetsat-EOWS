@@ -1,0 +1,2 @@
+ows?request=GetFeature&SERVICE=WFS&VERSION=1.1.0&TYPENAME=eumetsat:wind_ascat_thinned&maxFeatures=10	401
+ows?request=GetFeature&SERVICE=WFS&VERSION=1.1.0&TYPENAME=eumetsat:wind_ascat_reduced&maxFeatures=10	401
