@@ -1,0 +1,5 @@
+ows?SERVICE=WMS&REQUEST=DescribeLayer&VERSION=1.1.1&LAYERS=eumetsat%3Amsgio_rgb_airmass&AUTHKEY=d73dbdef-53fa-4263-b28c-8253e32a80e1
+ows?SERVICE=WMS&REQUEST=DescribeLayer&VERSION=1.1.1&LAYERS=eumetsat%3AMET9_RSS_RGBNatColour_PlateCarree&AUTHKEY=d73dbdef-53fa-4263-b28c-8253e32a80e1
+ows?SERVICE=WMS&REQUEST=DescribeLayer&VERSION=1.1.1&LAYERS=eumetsat%3Asst_orbits_composition&AUTHKEY=d73dbdef-53fa-4263-b28c-8253e32a80e1
+ows?SERVICE=WMS&REQUEST=DescribeLayer&VERSION=1.1.1&LAYERS=eumetsat%3Aamv_composition&AUTHKEY=d73dbdef-53fa-4263-b28c-8253e32a80e1
+ows?SERVICE=WMS&REQUEST=DescribeLayer&VERSION=1.1.1&LAYERS=eumetsat%3Ametopa_ascat&AUTHKEY=d73dbdef-53fa-4263-b28c-8253e32a80e1

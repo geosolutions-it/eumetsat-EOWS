@@ -1,0 +1,3 @@
+ows?service=WCS&version=2.0.1&request=GetCoverage&coverageId=msgio_rgb_airmass&subset=Long(-32,-22)&subset=Lat(37,44)	200	image/tiff
+ows?service=WCS&version=2.0.1&request=GetCoverage&coverageId=MET9_RSS_RGBNatColour_PlateCarree&subset=Long(-32,-22)&subset=Lat(37,44)	403	text/html
+ows?service=WCS&version=2.0.1&request=GetCoverage&coverageId=sst_orbits_composition&subset=Long(-6,30)&subset=Lat(-70,7)	403	text/html
