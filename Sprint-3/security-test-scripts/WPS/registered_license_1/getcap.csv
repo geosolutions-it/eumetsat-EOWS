@@ -1,1 +1,1 @@
-ows?service=wps&version=1.0.0&request=GetCapabilities&AUTHKEY=d73dbdef-53fa-4263-b28c-8253e32a80e1	200	application/xml
+ows?service=wps&version=1.0.0&request=GetCapabilities	200	application/xml
