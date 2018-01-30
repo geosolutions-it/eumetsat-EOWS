@@ -1,3 +1,4 @@
 ows?service=WCS&version=2.0.1&request=DescribeCoverage&coverageId=msgio_rgb_airmass	200	application/xml
 ows?service=WCS&version=2.0.1&request=DescribeCoverage&coverageId=MET9_RSS_RGBNatColour_PlateCarree	200	application/xml
 ows?service=WCS&version=2.0.1&request=DescribeCoverage&coverageId=sst_orbits_composition	200	application/xml
+ows?service=WCS&version=2.0.1&request=DescribeCoverage&coverageId=amv_composition	200	application/xml
