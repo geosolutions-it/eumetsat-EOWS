@@ -20,12 +20,12 @@
           </elementProp>
           <elementProp name="ACCESS_TOKEN_REGISTERED" elementType="Argument">
             <stringProp name="Argument.name">ACCESS_TOKEN_REGISTERED</stringProp>
-            <stringProp name="Argument.value">ca4aa959-7274-3fb6-a9ea-ea395a9de81a</stringProp>
+            <stringProp name="Argument.value"></stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="ACCESS_TOKEN_LICENSED" elementType="Argument">
             <stringProp name="Argument.name">ACCESS_TOKEN_LICENSED</stringProp>
-            <stringProp name="Argument.value">92330204-2b82-3862-9367-9b1aef0e0dca</stringProp>
+            <stringProp name="Argument.value"></stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="CSV_REGISTERED_NO_LICENSE_GETCAP_WMS_TEST" elementType="Argument">
@@ -51,6 +51,11 @@
           <elementProp name="CSV_UNREGISTERED_GETMAP" elementType="Argument">
             <stringProp name="Argument.name">CSV_UNREGISTERED_GETMAP</stringProp>
             <stringProp name="Argument.value">WMS/unregistered/getmap.csv</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="CSV_UNREGISTERED_GETMAP_FOOTER" elementType="Argument">
+            <stringProp name="Argument.name">CSV_UNREGISTERED_GETMAP_FOOTER</stringProp>
+            <stringProp name="Argument.value">WMS/unregistered/getmap_footer.csv</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="CSV_REGISTERED_NO_LICENSE_GETMAP" elementType="Argument">
@@ -223,10 +228,289 @@
             <stringProp name="Argument.value">Responses</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
+          <elementProp name="CSV_UNREGISTERED_DOWNLOADANIMATION_FOOTER" elementType="Argument">
+            <stringProp name="Argument.name">CSV_UNREGISTERED_DOWNLOADANIMATION_FOOTER</stringProp>
+            <stringProp name="Argument.value">WPS/unregistered/downloadanimation_footer.csv</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="CSV_REGISTERED_NO_LICENSE_DOWNLOADANIMATION_FOOTER" elementType="Argument">
+            <stringProp name="Argument.name">CSV_REGISTERED_NO_LICENSE_DOWNLOADANIMATION_FOOTER</stringProp>
+            <stringProp name="Argument.value">WPS/registered_no_license/downloadanimation_footer.csv</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="CSV_REGISTERED_LICENSE1_DOWNLOADANIMATION_FOOTER" elementType="Argument">
+            <stringProp name="Argument.name">CSV_REGISTERED_LICENSE1_DOWNLOADANIMATION_FOOTER</stringProp>
+            <stringProp name="Argument.value">WPS/registered_license_1/downloadanimation_footer.csv</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
         </collectionProp>
       </elementProp>
     </TestPlan>
     <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Access Token - Registered No License" enabled="true">
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration">${DURATION}</stringProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <longProp name="ThreadGroup.start_time">1175121299000</longProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <longProp name="ThreadGroup.end_time">1175121299000</longProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Requests" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">https://wso2-am.eoss-cloud.it:8243/userInfo/0.0.2/user?access_token=${ACCESS_TOKEN_REGISTERED}</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.implementation">Java</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code" enabled="true">
+          <collectionProp name="Asserion.test_strings">
+            <stringProp name="49586">200</stringProp>
+          </collectionProp>
+          <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+          <boolProp name="Assertion.assume_success">false</boolProp>
+          <intProp name="Assertion.test_type">2</intProp>
+        </ResponseAssertion>
+        <hashTree/>
+        <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Content Type" enabled="true">
+          <collectionProp name="Asserion.test_strings">
+            <stringProp name="-1082243251">text/html</stringProp>
+          </collectionProp>
+          <stringProp name="Assertion.test_field">Assertion.response_headers</stringProp>
+          <boolProp name="Assertion.assume_success">false</boolProp>
+          <intProp name="Assertion.test_type">2</intProp>
+        </ResponseAssertion>
+        <hashTree/>
+        <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Text Response" enabled="true">
+          <collectionProp name="Asserion.test_strings">
+            <stringProp name="-1384838526">REGISTERED</stringProp>
+          </collectionProp>
+          <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+          <boolProp name="Assertion.assume_success">false</boolProp>
+          <intProp name="Assertion.test_type">16</intProp>
+        </ResponseAssertion>
+        <hashTree/>
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="false">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>false</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+          <boolProp name="useGroupName">true</boolProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Access Token - Registered Licensed" enabled="true">
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration">${DURATION}</stringProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <longProp name="ThreadGroup.start_time">1175121299000</longProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <longProp name="ThreadGroup.end_time">1175121299000</longProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Requests" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">https://wso2-am.eoss-cloud.it:8243/userInfo/0.0.2/user?access_token=${ACCESS_TOKEN_LICENSED}</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.implementation">Java</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code" enabled="true">
+          <collectionProp name="Asserion.test_strings">
+            <stringProp name="49586">200</stringProp>
+          </collectionProp>
+          <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+          <boolProp name="Assertion.assume_success">false</boolProp>
+          <intProp name="Assertion.test_type">2</intProp>
+        </ResponseAssertion>
+        <hashTree/>
+        <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Content Type" enabled="true">
+          <collectionProp name="Asserion.test_strings">
+            <stringProp name="-1082243251">text/html</stringProp>
+          </collectionProp>
+          <stringProp name="Assertion.test_field">Assertion.response_headers</stringProp>
+          <boolProp name="Assertion.assume_success">false</boolProp>
+          <intProp name="Assertion.test_type">2</intProp>
+        </ResponseAssertion>
+        <hashTree/>
+        <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Text Response" enabled="true">
+          <collectionProp name="Asserion.test_strings">
+            <stringProp name="-99824288">REGISTERED_LICENSED</stringProp>
+          </collectionProp>
+          <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+          <boolProp name="Assertion.assume_success">false</boolProp>
+          <intProp name="Assertion.test_type">16</intProp>
+        </ResponseAssertion>
+        <hashTree/>
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="false">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>false</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+          <boolProp name="useGroupName">true</boolProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="WMS GetCap - Unregistered" enabled="true">
         <boolProp name="ThreadGroup.scheduler">false</boolProp>
         <stringProp name="ThreadGroup.duration">${DURATION}</stringProp>
@@ -1166,6 +1450,155 @@ and
           <boolProp name="Assertion.assume_success">true</boolProp>
           <intProp name="Assertion.test_type">2</intProp>
         </ResponseAssertion>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="WMS GetMap Footer - Unregistered" enabled="true">
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration">${DURATION}</stringProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <longProp name="ThreadGroup.start_time">1175121299000</longProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <intProp name="LoopController.loops">-1</intProp>
+        </elementProp>
+        <longProp name="ThreadGroup.end_time">1175121299000</longProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Requests" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">${GEOSERVER_PATH}/${PATH}</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.implementation">Java</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
+          <stringProp name="delimiter">\t</stringProp>
+          <boolProp name="recycle">false</boolProp>
+          <stringProp name="filename">${CSV_UNREGISTERED_GETMAP_FOOTER}</stringProp>
+          <stringProp name="variableNames">PATH,http_response,http_content_type</stringProp>
+          <stringProp name="fileEncoding"></stringProp>
+          <boolProp name="quotedData">false</boolProp>
+          <boolProp name="stopThread">true</boolProp>
+          <stringProp name="shareMode">shareMode.all</stringProp>
+          <boolProp name="ignoreFirstLine">false</boolProp>
+        </CSVDataSet>
+        <hashTree/>
+        <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${HOST}</stringProp>
+          <stringProp name="HTTPSampler.port">443</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">${GEOSERVER_PATH}</stringProp>
+          <stringProp name="HTTPSampler.concurrentPool">4</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </ConfigTestElement>
+        <hashTree/>
+        <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code" enabled="true">
+          <collectionProp name="Asserion.test_strings">
+            <stringProp name="-1922978308">${http_response}</stringProp>
+          </collectionProp>
+          <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+          <boolProp name="Assertion.assume_success">true</boolProp>
+          <intProp name="Assertion.test_type">2</intProp>
+        </ResponseAssertion>
+        <hashTree/>
+        <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Content Type" enabled="true">
+          <collectionProp name="Asserion.test_strings">
+            <stringProp name="608852701">${http_content_type}</stringProp>
+          </collectionProp>
+          <stringProp name="Assertion.test_field">Assertion.response_headers</stringProp>
+          <boolProp name="Assertion.assume_success">true</boolProp>
+          <intProp name="Assertion.test_type">2</intProp>
+        </ResponseAssertion>
+        <hashTree/>
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="false">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>false</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+          <boolProp name="useGroupName">true</boolProp>
+        </ResultCollector>
         <hashTree/>
         <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
@@ -6456,15 +6889,15 @@ and
       &lt;ows:Identifier&gt;bbox&lt;/ows:Identifier&gt;&#xd;
       &lt;wps:Data&gt;&#xd;
         &lt;wps:BoundingBoxData crs=&quot;EPSG:4326&quot;&gt;&#xd;
-          &lt;ows:LowerCorner&gt;-36.2700004577637 -77.7699966430664&lt;/ows:LowerCorner&gt;&#xd;
-          &lt;ows:UpperCorner&gt;119.269996643066 77.7699966430664&lt;/ows:UpperCorner&gt;&#xd;
+          &lt;ows:LowerCorner&gt;-4.3505859375 30.322265625&lt;/ows:LowerCorner&gt;&#xd;
+          &lt;ows:UpperCorner&gt;22.0166015625 56.689453125&lt;/ows:UpperCorner&gt;&#xd;
         &lt;/wps:BoundingBoxData&gt;&#xd;
       &lt;/wps:Data&gt;&#xd;
     &lt;/wps:Input&gt;&#xd;
     &lt;wps:Input&gt;&#xd;
       &lt;ows:Identifier&gt;time&lt;/ows:Identifier&gt;&#xd;
       &lt;wps:Data&gt;&#xd;
-        &lt;wps:LiteralData&gt;2017-12-04T11:15:00.000Z/2017-12-12T10:30:00.000Z/PT15M&lt;/wps:LiteralData&gt;&#xd;
+        &lt;wps:LiteralData&gt;2018-01-25T18:40:00.000Z/2018-01-29T07:35:00.000Z/PT5M&lt;/wps:LiteralData&gt;&#xd;
       &lt;/wps:Data&gt;&#xd;
     &lt;/wps:Input&gt;&#xd;
     &lt;wps:Input&gt;&#xd;
@@ -6484,7 +6917,7 @@ and
       &lt;wps:Data&gt;&#xd;
         &lt;wps:ComplexData xmlns:dwn=&quot;http://geoserver.org/wps/download&quot;&gt;&#xd;
           &lt;dwn:Layer&gt;&#xd;
-            &lt;dwn:Name&gt;eumetsat:msgio_rgb_airmass&lt;/dwn:Name&gt;&#xd;
+            &lt;dwn:Name&gt;eumetsat:MSG15_RSS_HRSEVIRI_RGB_AIRMASS_GEOTIFF&lt;/dwn:Name&gt;&#xd;
           &lt;/dwn:Layer&gt;&#xd;
         &lt;/wps:ComplexData&gt;&#xd;
       &lt;/wps:Data&gt;&#xd;
@@ -6645,7 +7078,7 @@ and
         </ResultCollector>
         <hashTree/>
         <ResultSaver guiclass="ResultSaverGui" testclass="ResultSaver" testname="Save Responses to a file" enabled="true">
-          <stringProp name="FileSaver.filename">/tmp/DownloadAnimation_Unregistered</stringProp>
+          <stringProp name="FileSaver.filename">DownloadAnimation_Unregistered_</stringProp>
           <boolProp name="FileSaver.errorsonly">false</boolProp>
           <boolProp name="FileSaver.skipautonumber">false</boolProp>
           <boolProp name="FileSaver.skipsuffix">false</boolProp>
@@ -6689,15 +7122,15 @@ and
       &lt;ows:Identifier&gt;bbox&lt;/ows:Identifier&gt;&#xd;
       &lt;wps:Data&gt;&#xd;
         &lt;wps:BoundingBoxData crs=&quot;EPSG:4326&quot;&gt;&#xd;
-          &lt;ows:LowerCorner&gt;-36.2700004577637 -77.7699966430664&lt;/ows:LowerCorner&gt;&#xd;
-          &lt;ows:UpperCorner&gt;119.269996643066 77.7699966430664&lt;/ows:UpperCorner&gt;&#xd;
+          &lt;ows:LowerCorner&gt;-4.3505859375 30.322265625&lt;/ows:LowerCorner&gt;&#xd;
+          &lt;ows:UpperCorner&gt;22.0166015625 56.689453125&lt;/ows:UpperCorner&gt;&#xd;
         &lt;/wps:BoundingBoxData&gt;&#xd;
       &lt;/wps:Data&gt;&#xd;
     &lt;/wps:Input&gt;&#xd;
     &lt;wps:Input&gt;&#xd;
       &lt;ows:Identifier&gt;time&lt;/ows:Identifier&gt;&#xd;
       &lt;wps:Data&gt;&#xd;
-        &lt;wps:LiteralData&gt;2015-03-11T10:15:00.000Z/2018-01-29T08:15:00.000Z/PT5M&lt;/wps:LiteralData&gt;&#xd;
+        &lt;wps:LiteralData&gt;2018-01-25T18:40:00.000Z/2018-01-29T07:35:00.000Z/PT5M&lt;/wps:LiteralData&gt;&#xd;
       &lt;/wps:Data&gt;&#xd;
     &lt;/wps:Input&gt;&#xd;
     &lt;wps:Input&gt;&#xd;
@@ -6842,7 +7275,7 @@ and
         </ResultCollector>
         <hashTree/>
         <ResultSaver guiclass="ResultSaverGui" testclass="ResultSaver" testname="Save Responses to a file" enabled="true">
-          <stringProp name="FileSaver.filename">/tmp/DownloadAnimation_Registered</stringProp>
+          <stringProp name="FileSaver.filename">DownloadAnimation_Registered_</stringProp>
           <boolProp name="FileSaver.errorsonly">false</boolProp>
           <boolProp name="FileSaver.skipautonumber">false</boolProp>
           <boolProp name="FileSaver.skipsuffix">false</boolProp>
@@ -6922,15 +7355,15 @@ and
       &lt;ows:Identifier&gt;bbox&lt;/ows:Identifier&gt;&#xd;
       &lt;wps:Data&gt;&#xd;
         &lt;wps:BoundingBoxData crs=&quot;EPSG:4326&quot;&gt;&#xd;
-          &lt;ows:LowerCorner&gt;-36.2700004577637 -77.7699966430664&lt;/ows:LowerCorner&gt;&#xd;
-          &lt;ows:UpperCorner&gt;119.269996643066 77.7699966430664&lt;/ows:UpperCorner&gt;&#xd;
+          &lt;ows:LowerCorner&gt;-4.3505859375 30.322265625&lt;/ows:LowerCorner&gt;&#xd;
+          &lt;ows:UpperCorner&gt;22.0166015625 56.689453125&lt;/ows:UpperCorner&gt;&#xd;
         &lt;/wps:BoundingBoxData&gt;&#xd;
       &lt;/wps:Data&gt;&#xd;
     &lt;/wps:Input&gt;&#xd;
     &lt;wps:Input&gt;&#xd;
       &lt;ows:Identifier&gt;time&lt;/ows:Identifier&gt;&#xd;
       &lt;wps:Data&gt;&#xd;
-        &lt;wps:LiteralData&gt;2015-03-11T10:15:00.000Z/2018-01-29T08:15:00.000Z/PT5M&lt;/wps:LiteralData&gt;&#xd;
+        &lt;wps:LiteralData&gt;2018-01-25T18:40:00.000Z/2018-01-29T07:35:00.000Z/PT5M&lt;/wps:LiteralData&gt;&#xd;
       &lt;/wps:Data&gt;&#xd;
     &lt;/wps:Input&gt;&#xd;
     &lt;wps:Input&gt;&#xd;
@@ -7075,7 +7508,724 @@ and
         </ResultCollector>
         <hashTree/>
         <ResultSaver guiclass="ResultSaverGui" testclass="ResultSaver" testname="Save Responses to a file" enabled="true">
-          <stringProp name="FileSaver.filename">Responses/DownloadAnimation_Licensed</stringProp>
+          <stringProp name="FileSaver.filename">DownloadAnimation_Licensed_</stringProp>
+          <boolProp name="FileSaver.errorsonly">false</boolProp>
+          <boolProp name="FileSaver.skipautonumber">false</boolProp>
+          <boolProp name="FileSaver.skipsuffix">false</boolProp>
+          <boolProp name="FileSaver.successonly">false</boolProp>
+          <boolProp name="FileSaver.addTimstamp">true</boolProp>
+        </ResultSaver>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="WPS DownloadAnimation Footer - Unregistered" enabled="true">
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration">${DURATION}</stringProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <longProp name="ThreadGroup.start_time">1175121299000</longProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <intProp name="LoopController.loops">-1</intProp>
+        </elementProp>
+        <longProp name="ThreadGroup.end_time">1175121299000</longProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Requests" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#xd;
+&lt;wps:Execute version=&quot;1.0.0&quot; service=&quot;WPS&quot;&#xd;
+             xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns=&quot;http://www.opengis.net/wps/1.0.0&quot;&#xd;
+             xmlns:wfs=&quot;http://www.opengis.net/wfs&quot; xmlns:wps=&quot;http://www.opengis.net/wps/1.0.0&quot;&#xd;
+             xmlns:ows=&quot;http://www.opengis.net/ows/1.1&quot; xmlns:gml=&quot;http://www.opengis.net/gml&quot;&#xd;
+             xmlns:ogc=&quot;http://www.opengis.net/ogc&quot; xmlns:wcs=&quot;http://www.opengis.net/wcs/1.1.1&quot;&#xd;
+             xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot;&#xd;
+             xsi:schemaLocation=&quot;http://www.opengis.net/wps/1.0.0 http://schemas.opengis.net/wps/1.0.0/wpsAll.xsd&quot;&gt;&#xd;
+  &lt;ows:Identifier&gt;gs:DownloadAnimation&lt;/ows:Identifier&gt;&#xd;
+  &lt;wps:DataInputs&gt;&#xd;
+    &lt;wps:Input&gt;&#xd;
+      &lt;ows:Identifier&gt;bbox&lt;/ows:Identifier&gt;&#xd;
+      &lt;wps:Data&gt;&#xd;
+        &lt;wps:BoundingBoxData crs=&quot;EPSG:4326&quot;&gt;&#xd;
+          &lt;ows:LowerCorner&gt;-4.3505859375 30.322265625&lt;/ows:LowerCorner&gt;&#xd;
+          &lt;ows:UpperCorner&gt;22.0166015625 56.689453125&lt;/ows:UpperCorner&gt;&#xd;
+        &lt;/wps:BoundingBoxData&gt;&#xd;
+      &lt;/wps:Data&gt;&#xd;
+    &lt;/wps:Input&gt;&#xd;
+    &lt;wps:Input&gt;&#xd;
+      &lt;ows:Identifier&gt;time&lt;/ows:Identifier&gt;&#xd;
+      &lt;wps:Data&gt;&#xd;
+        &lt;wps:LiteralData&gt;2018-01-25T18:40:00.000Z/2018-01-29T07:35:00.000Z/PT5M&lt;/wps:LiteralData&gt;&#xd;
+      &lt;/wps:Data&gt;&#xd;
+    &lt;/wps:Input&gt;&#xd;
+    &lt;wps:Input&gt;&#xd;
+      &lt;ows:Identifier&gt;width&lt;/ows:Identifier&gt;&#xd;
+      &lt;wps:Data&gt;&#xd;
+        &lt;wps:LiteralData&gt;768&lt;/wps:LiteralData&gt;&#xd;
+      &lt;/wps:Data&gt;&#xd;
+    &lt;/wps:Input&gt;&#xd;
+    &lt;wps:Input&gt;&#xd;
+      &lt;ows:Identifier&gt;height&lt;/ows:Identifier&gt;&#xd;
+      &lt;wps:Data&gt;&#xd;
+        &lt;wps:LiteralData&gt;768&lt;/wps:LiteralData&gt;&#xd;
+      &lt;/wps:Data&gt;&#xd;
+    &lt;/wps:Input&gt;&#xd;
+    &lt;wps:Input&gt;&#xd;
+      &lt;ows:Identifier&gt;decoration&lt;/ows:Identifier&gt;&#xd;
+      &lt;wps:Data&gt;&#xd;
+        &lt;wps:LiteralData&gt;footer25&lt;/wps:LiteralData&gt;&#xd;
+      &lt;/wps:Data&gt;&#xd;
+    &lt;/wps:Input&gt;&#xd;
+    &lt;wps:Input&gt;&#xd;
+      &lt;ows:Identifier&gt;layer&lt;/ows:Identifier&gt;&#xd;
+      &lt;wps:Data&gt;&#xd;
+        &lt;wps:ComplexData xmlns:dwn=&quot;http://geoserver.org/wps/download&quot;&gt;&#xd;
+          &lt;dwn:Layer&gt;&#xd;
+            &lt;dwn:Name&gt;eumetsat:MSG15_RSS_HRSEVIRI_RGB_AIRMASS_GEOTIFF&lt;/dwn:Name&gt;&#xd;
+          &lt;/dwn:Layer&gt;&#xd;
+        &lt;/wps:ComplexData&gt;&#xd;
+      &lt;/wps:Data&gt;&#xd;
+    &lt;/wps:Input&gt;&#xd;
+    &lt;wps:Input&gt;&#xd;
+      &lt;ows:Identifier&gt;fps&lt;/ows:Identifier&gt;&#xd;
+      &lt;wps:Data&gt;&#xd;
+        &lt;wps:LiteralData&gt;30&lt;/wps:LiteralData&gt;&#xd;
+      &lt;/wps:Data&gt;&#xd;
+    &lt;/wps:Input&gt;&#xd;
+   &lt;/wps:DataInputs&gt;&#xd;
+  &lt;wps:ResponseForm&gt;&#xd;
+    &lt;wps:RawDataOutput mimeType=&quot;video/mp4&quot;&gt;&#xd;
+      &lt;ows:Identifier&gt;result&lt;/ows:Identifier&gt;&#xd;
+    &lt;/wps:RawDataOutput&gt;&#xd;
+  &lt;/wps:ResponseForm&gt;&#xd;
+&lt;/wps:Execute&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">${GEOSERVER_PATH}/${PATH}</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.implementation">Java</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+          <collectionProp name="HeaderManager.headers">
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Content-Type</stringProp>
+              <stringProp name="Header.value">application/xml</stringProp>
+            </elementProp>
+          </collectionProp>
+        </HeaderManager>
+        <hashTree/>
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
+          <stringProp name="delimiter">\t</stringProp>
+          <boolProp name="recycle">false</boolProp>
+          <stringProp name="filename">${CSV_UNREGISTERED_DOWNLOADANIMATION_FOOTER}</stringProp>
+          <stringProp name="variableNames">PATH,http_response,http_content_type</stringProp>
+          <stringProp name="fileEncoding"></stringProp>
+          <boolProp name="quotedData">false</boolProp>
+          <boolProp name="stopThread">true</boolProp>
+          <stringProp name="shareMode">shareMode.all</stringProp>
+          <boolProp name="ignoreFirstLine">false</boolProp>
+        </CSVDataSet>
+        <hashTree/>
+        <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${HOST}</stringProp>
+          <stringProp name="HTTPSampler.port">443</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">${GEOSERVER_PATH}</stringProp>
+          <stringProp name="HTTPSampler.concurrentPool">4</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </ConfigTestElement>
+        <hashTree/>
+        <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code" enabled="true">
+          <collectionProp name="Asserion.test_strings">
+            <stringProp name="-1922978308">${http_response}</stringProp>
+          </collectionProp>
+          <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+          <boolProp name="Assertion.assume_success">true</boolProp>
+          <intProp name="Assertion.test_type">2</intProp>
+        </ResponseAssertion>
+        <hashTree/>
+        <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Content Type" enabled="true">
+          <collectionProp name="Asserion.test_strings">
+            <stringProp name="608852701">${http_content_type}</stringProp>
+          </collectionProp>
+          <stringProp name="Assertion.test_field">Assertion.response_headers</stringProp>
+          <boolProp name="Assertion.assume_success">true</boolProp>
+          <intProp name="Assertion.test_type">2</intProp>
+        </ResponseAssertion>
+        <hashTree/>
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="false">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>false</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+          <boolProp name="useGroupName">true</boolProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultSaver guiclass="ResultSaverGui" testclass="ResultSaver" testname="Save Responses to a file" enabled="true">
+          <stringProp name="FileSaver.filename">DownloadAnimation_Unregistered_Footer_</stringProp>
+          <boolProp name="FileSaver.errorsonly">false</boolProp>
+          <boolProp name="FileSaver.skipautonumber">false</boolProp>
+          <boolProp name="FileSaver.skipsuffix">false</boolProp>
+          <boolProp name="FileSaver.successonly">false</boolProp>
+          <boolProp name="FileSaver.addTimstamp">true</boolProp>
+        </ResultSaver>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="WPS DownloadAnimation Footer - Registered No Licence" enabled="true">
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration">${DURATION}</stringProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <longProp name="ThreadGroup.start_time">1175121299000</longProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <intProp name="LoopController.loops">-1</intProp>
+        </elementProp>
+        <longProp name="ThreadGroup.end_time">1175121299000</longProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Requests" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#xd;
+&lt;wps:Execute version=&quot;1.0.0&quot; service=&quot;WPS&quot;&#xd;
+             xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns=&quot;http://www.opengis.net/wps/1.0.0&quot;&#xd;
+             xmlns:wfs=&quot;http://www.opengis.net/wfs&quot; xmlns:wps=&quot;http://www.opengis.net/wps/1.0.0&quot;&#xd;
+             xmlns:ows=&quot;http://www.opengis.net/ows/1.1&quot; xmlns:gml=&quot;http://www.opengis.net/gml&quot;&#xd;
+             xmlns:ogc=&quot;http://www.opengis.net/ogc&quot; xmlns:wcs=&quot;http://www.opengis.net/wcs/1.1.1&quot;&#xd;
+             xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot;&#xd;
+             xsi:schemaLocation=&quot;http://www.opengis.net/wps/1.0.0 http://schemas.opengis.net/wps/1.0.0/wpsAll.xsd&quot;&gt;&#xd;
+  &lt;ows:Identifier&gt;gs:DownloadAnimation&lt;/ows:Identifier&gt;&#xd;
+  &lt;wps:DataInputs&gt;&#xd;
+    &lt;wps:Input&gt;&#xd;
+      &lt;ows:Identifier&gt;bbox&lt;/ows:Identifier&gt;&#xd;
+      &lt;wps:Data&gt;&#xd;
+        &lt;wps:BoundingBoxData crs=&quot;EPSG:4326&quot;&gt;&#xd;
+          &lt;ows:LowerCorner&gt;-4.3505859375 30.322265625&lt;/ows:LowerCorner&gt;&#xd;
+          &lt;ows:UpperCorner&gt;22.0166015625 56.689453125&lt;/ows:UpperCorner&gt;&#xd;
+        &lt;/wps:BoundingBoxData&gt;&#xd;
+      &lt;/wps:Data&gt;&#xd;
+    &lt;/wps:Input&gt;&#xd;
+    &lt;wps:Input&gt;&#xd;
+      &lt;ows:Identifier&gt;time&lt;/ows:Identifier&gt;&#xd;
+      &lt;wps:Data&gt;&#xd;
+        &lt;wps:LiteralData&gt;2018-01-25T18:40:00.000Z/2018-01-29T07:35:00.000Z/PT5M&lt;/wps:LiteralData&gt;&#xd;
+      &lt;/wps:Data&gt;&#xd;
+    &lt;/wps:Input&gt;&#xd;
+    &lt;wps:Input&gt;&#xd;
+      &lt;ows:Identifier&gt;width&lt;/ows:Identifier&gt;&#xd;
+      &lt;wps:Data&gt;&#xd;
+        &lt;wps:LiteralData&gt;768&lt;/wps:LiteralData&gt;&#xd;
+      &lt;/wps:Data&gt;&#xd;
+    &lt;/wps:Input&gt;&#xd;
+    &lt;wps:Input&gt;&#xd;
+      &lt;ows:Identifier&gt;height&lt;/ows:Identifier&gt;&#xd;
+      &lt;wps:Data&gt;&#xd;
+        &lt;wps:LiteralData&gt;768&lt;/wps:LiteralData&gt;&#xd;
+      &lt;/wps:Data&gt;&#xd;
+    &lt;/wps:Input&gt;&#xd;
+    &lt;wps:Input&gt;&#xd;
+      &lt;ows:Identifier&gt;decoration&lt;/ows:Identifier&gt;&#xd;
+      &lt;wps:Data&gt;&#xd;
+        &lt;wps:LiteralData&gt;footer25&lt;/wps:LiteralData&gt;&#xd;
+      &lt;/wps:Data&gt;&#xd;
+    &lt;/wps:Input&gt;&#xd;
+    &lt;wps:Input&gt;&#xd;
+      &lt;ows:Identifier&gt;layer&lt;/ows:Identifier&gt;&#xd;
+      &lt;wps:Data&gt;&#xd;
+        &lt;wps:ComplexData xmlns:dwn=&quot;http://geoserver.org/wps/download&quot;&gt;&#xd;
+          &lt;dwn:Layer&gt;&#xd;
+            &lt;dwn:Name&gt;eumetsat:MSG15_RSS_HRSEVIRI_RGB_AIRMASS_GEOTIFF&lt;/dwn:Name&gt;&#xd;
+          &lt;/dwn:Layer&gt;&#xd;
+        &lt;/wps:ComplexData&gt;&#xd;
+      &lt;/wps:Data&gt;&#xd;
+    &lt;/wps:Input&gt;&#xd;
+    &lt;wps:Input&gt;&#xd;
+      &lt;ows:Identifier&gt;fps&lt;/ows:Identifier&gt;&#xd;
+      &lt;wps:Data&gt;&#xd;
+        &lt;wps:LiteralData&gt;30&lt;/wps:LiteralData&gt;&#xd;
+      &lt;/wps:Data&gt;&#xd;
+    &lt;/wps:Input&gt;&#xd;
+   &lt;/wps:DataInputs&gt;&#xd;
+  &lt;wps:ResponseForm&gt;&#xd;
+    &lt;wps:RawDataOutput mimeType=&quot;video/mp4&quot;&gt;&#xd;
+      &lt;ows:Identifier&gt;result&lt;/ows:Identifier&gt;&#xd;
+    &lt;/wps:RawDataOutput&gt;&#xd;
+  &lt;/wps:ResponseForm&gt;&#xd;
+&lt;/wps:Execute&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">${GEOSERVER_PATH}/${PATH}access_token=${ACCESS_TOKEN_REGISTERED}</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.implementation">Java</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+          <collectionProp name="HeaderManager.headers">
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Content-Type</stringProp>
+              <stringProp name="Header.value">application/xml</stringProp>
+            </elementProp>
+          </collectionProp>
+        </HeaderManager>
+        <hashTree/>
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
+          <stringProp name="delimiter">\t</stringProp>
+          <boolProp name="recycle">false</boolProp>
+          <stringProp name="filename">${CSV_REGISTERED_NO_LICENSE_DOWNLOADANIMATION_FOOTER}</stringProp>
+          <stringProp name="variableNames">PATH,http_response,http_content_type</stringProp>
+          <stringProp name="fileEncoding"></stringProp>
+          <boolProp name="quotedData">false</boolProp>
+          <boolProp name="stopThread">true</boolProp>
+          <stringProp name="shareMode">shareMode.all</stringProp>
+          <boolProp name="ignoreFirstLine">false</boolProp>
+        </CSVDataSet>
+        <hashTree/>
+        <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${HOST}</stringProp>
+          <stringProp name="HTTPSampler.port">443</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">${GEOSERVER_PATH}</stringProp>
+          <stringProp name="HTTPSampler.concurrentPool">4</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </ConfigTestElement>
+        <hashTree/>
+        <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code" enabled="true">
+          <collectionProp name="Asserion.test_strings">
+            <stringProp name="-1922978308">${http_response}</stringProp>
+          </collectionProp>
+          <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+          <boolProp name="Assertion.assume_success">true</boolProp>
+          <intProp name="Assertion.test_type">2</intProp>
+        </ResponseAssertion>
+        <hashTree/>
+        <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Content Type" enabled="true">
+          <collectionProp name="Asserion.test_strings">
+            <stringProp name="608852701">${http_content_type}</stringProp>
+          </collectionProp>
+          <stringProp name="Assertion.test_field">Assertion.response_headers</stringProp>
+          <boolProp name="Assertion.assume_success">true</boolProp>
+          <intProp name="Assertion.test_type">2</intProp>
+        </ResponseAssertion>
+        <hashTree/>
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="false">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>false</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+          <boolProp name="useGroupName">true</boolProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultSaver guiclass="ResultSaverGui" testclass="ResultSaver" testname="Save Responses to a file" enabled="true">
+          <stringProp name="FileSaver.filename">DownloadAnimation_Registered_Footer_</stringProp>
+          <boolProp name="FileSaver.errorsonly">false</boolProp>
+          <boolProp name="FileSaver.skipautonumber">false</boolProp>
+          <boolProp name="FileSaver.skipsuffix">false</boolProp>
+          <boolProp name="FileSaver.successonly">false</boolProp>
+          <boolProp name="FileSaver.addTimstamp">true</boolProp>
+        </ResultSaver>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="WPS DownloadAnimation Footer - Registered  Licenced" enabled="true">
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration">${DURATION}</stringProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <longProp name="ThreadGroup.start_time">1175121299000</longProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <intProp name="LoopController.loops">-1</intProp>
+        </elementProp>
+        <longProp name="ThreadGroup.end_time">1175121299000</longProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Requests" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#xd;
+&lt;wps:Execute version=&quot;1.0.0&quot; service=&quot;WPS&quot;&#xd;
+             xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns=&quot;http://www.opengis.net/wps/1.0.0&quot;&#xd;
+             xmlns:wfs=&quot;http://www.opengis.net/wfs&quot; xmlns:wps=&quot;http://www.opengis.net/wps/1.0.0&quot;&#xd;
+             xmlns:ows=&quot;http://www.opengis.net/ows/1.1&quot; xmlns:gml=&quot;http://www.opengis.net/gml&quot;&#xd;
+             xmlns:ogc=&quot;http://www.opengis.net/ogc&quot; xmlns:wcs=&quot;http://www.opengis.net/wcs/1.1.1&quot;&#xd;
+             xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot;&#xd;
+             xsi:schemaLocation=&quot;http://www.opengis.net/wps/1.0.0 http://schemas.opengis.net/wps/1.0.0/wpsAll.xsd&quot;&gt;&#xd;
+  &lt;ows:Identifier&gt;gs:DownloadAnimation&lt;/ows:Identifier&gt;&#xd;
+  &lt;wps:DataInputs&gt;&#xd;
+    &lt;wps:Input&gt;&#xd;
+      &lt;ows:Identifier&gt;bbox&lt;/ows:Identifier&gt;&#xd;
+      &lt;wps:Data&gt;&#xd;
+        &lt;wps:BoundingBoxData crs=&quot;EPSG:4326&quot;&gt;&#xd;
+          &lt;ows:LowerCorner&gt;-4.3505859375 30.322265625&lt;/ows:LowerCorner&gt;&#xd;
+          &lt;ows:UpperCorner&gt;22.0166015625 56.689453125&lt;/ows:UpperCorner&gt;&#xd;
+        &lt;/wps:BoundingBoxData&gt;&#xd;
+      &lt;/wps:Data&gt;&#xd;
+    &lt;/wps:Input&gt;&#xd;
+    &lt;wps:Input&gt;&#xd;
+      &lt;ows:Identifier&gt;time&lt;/ows:Identifier&gt;&#xd;
+      &lt;wps:Data&gt;&#xd;
+        &lt;wps:LiteralData&gt;2018-01-25T18:40:00.000Z/2018-01-29T07:35:00.000Z/PT5M&lt;/wps:LiteralData&gt;&#xd;
+      &lt;/wps:Data&gt;&#xd;
+    &lt;/wps:Input&gt;&#xd;
+    &lt;wps:Input&gt;&#xd;
+      &lt;ows:Identifier&gt;width&lt;/ows:Identifier&gt;&#xd;
+      &lt;wps:Data&gt;&#xd;
+        &lt;wps:LiteralData&gt;768&lt;/wps:LiteralData&gt;&#xd;
+      &lt;/wps:Data&gt;&#xd;
+    &lt;/wps:Input&gt;&#xd;
+    &lt;wps:Input&gt;&#xd;
+      &lt;ows:Identifier&gt;height&lt;/ows:Identifier&gt;&#xd;
+      &lt;wps:Data&gt;&#xd;
+        &lt;wps:LiteralData&gt;768&lt;/wps:LiteralData&gt;&#xd;
+      &lt;/wps:Data&gt;&#xd;
+    &lt;/wps:Input&gt;&#xd;
+    &lt;wps:Input&gt;&#xd;
+      &lt;ows:Identifier&gt;decoration&lt;/ows:Identifier&gt;&#xd;
+      &lt;wps:Data&gt;&#xd;
+        &lt;wps:LiteralData&gt;footer25&lt;/wps:LiteralData&gt;&#xd;
+      &lt;/wps:Data&gt;&#xd;
+    &lt;/wps:Input&gt;&#xd;
+    &lt;wps:Input&gt;&#xd;
+      &lt;ows:Identifier&gt;layer&lt;/ows:Identifier&gt;&#xd;
+      &lt;wps:Data&gt;&#xd;
+        &lt;wps:ComplexData xmlns:dwn=&quot;http://geoserver.org/wps/download&quot;&gt;&#xd;
+          &lt;dwn:Layer&gt;&#xd;
+            &lt;dwn:Name&gt;eumetsat:MSG15_RSS_HRSEVIRI_RGB_AIRMASS_GEOTIFF&lt;/dwn:Name&gt;&#xd;
+          &lt;/dwn:Layer&gt;&#xd;
+        &lt;/wps:ComplexData&gt;&#xd;
+      &lt;/wps:Data&gt;&#xd;
+    &lt;/wps:Input&gt;&#xd;
+    &lt;wps:Input&gt;&#xd;
+      &lt;ows:Identifier&gt;fps&lt;/ows:Identifier&gt;&#xd;
+      &lt;wps:Data&gt;&#xd;
+        &lt;wps:LiteralData&gt;30&lt;/wps:LiteralData&gt;&#xd;
+      &lt;/wps:Data&gt;&#xd;
+    &lt;/wps:Input&gt;&#xd;
+   &lt;/wps:DataInputs&gt;&#xd;
+  &lt;wps:ResponseForm&gt;&#xd;
+    &lt;wps:RawDataOutput mimeType=&quot;video/mp4&quot;&gt;&#xd;
+      &lt;ows:Identifier&gt;result&lt;/ows:Identifier&gt;&#xd;
+    &lt;/wps:RawDataOutput&gt;&#xd;
+  &lt;/wps:ResponseForm&gt;&#xd;
+&lt;/wps:Execute&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">${GEOSERVER_PATH}/${PATH}access_token=${ACCESS_TOKEN_LICENSED}</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.implementation">Java</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+          <collectionProp name="HeaderManager.headers">
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Content-Type</stringProp>
+              <stringProp name="Header.value">application/xml</stringProp>
+            </elementProp>
+          </collectionProp>
+        </HeaderManager>
+        <hashTree/>
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
+          <stringProp name="delimiter">\t</stringProp>
+          <boolProp name="recycle">false</boolProp>
+          <stringProp name="filename">${CSV_REGISTERED_LICENSE1_DOWNLOADANIMATION_FOOTER}</stringProp>
+          <stringProp name="variableNames">PATH,http_response,http_content_type</stringProp>
+          <stringProp name="fileEncoding"></stringProp>
+          <boolProp name="quotedData">false</boolProp>
+          <boolProp name="stopThread">true</boolProp>
+          <stringProp name="shareMode">shareMode.all</stringProp>
+          <boolProp name="ignoreFirstLine">false</boolProp>
+        </CSVDataSet>
+        <hashTree/>
+        <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${HOST}</stringProp>
+          <stringProp name="HTTPSampler.port">443</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">${GEOSERVER_PATH}</stringProp>
+          <stringProp name="HTTPSampler.concurrentPool">4</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </ConfigTestElement>
+        <hashTree/>
+        <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code" enabled="true">
+          <collectionProp name="Asserion.test_strings">
+            <stringProp name="-1922978308">${http_response}</stringProp>
+          </collectionProp>
+          <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+          <boolProp name="Assertion.assume_success">true</boolProp>
+          <intProp name="Assertion.test_type">2</intProp>
+        </ResponseAssertion>
+        <hashTree/>
+        <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Content Type" enabled="true">
+          <collectionProp name="Asserion.test_strings">
+            <stringProp name="608852701">${http_content_type}</stringProp>
+          </collectionProp>
+          <stringProp name="Assertion.test_field">Assertion.response_headers</stringProp>
+          <boolProp name="Assertion.assume_success">true</boolProp>
+          <intProp name="Assertion.test_type">2</intProp>
+        </ResponseAssertion>
+        <hashTree/>
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="false">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>false</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+          <boolProp name="useGroupName">true</boolProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultSaver guiclass="ResultSaverGui" testclass="ResultSaver" testname="Save Responses to a file" enabled="true">
+          <stringProp name="FileSaver.filename">DownloadAnimation_Licensed_Footer_</stringProp>
           <boolProp name="FileSaver.errorsonly">false</boolProp>
           <boolProp name="FileSaver.skipautonumber">false</boolProp>
           <boolProp name="FileSaver.skipsuffix">false</boolProp>
