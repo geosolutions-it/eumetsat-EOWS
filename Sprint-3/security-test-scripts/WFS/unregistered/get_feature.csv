@@ -1,1 +1,1 @@
-ows?request=GetFeature&SERVICE=WFS&VERSION=1.1.0&TYPENAME=eumetsat:metopa_ascat&maxFeatures=10	403
+ows?request=GetFeature&SERVICE=WFS&VERSION=1.1.0&TYPENAME=eumetsat:metopa_ascat&maxFeatures=10	401
