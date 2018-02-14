@@ -1,1 +1,1 @@
-ows?service=wps&version=1.0.0&request=GetCapabilities	403	text/html
+ows?service=wps&version=1.0.0&request=GetCapabilities	200	application/xml
