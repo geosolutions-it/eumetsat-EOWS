@@ -1,5 +1,5 @@
-ows?SERVICE=WMS&REQUEST=DescribeLayer&VERSION=1.1.1&LAYERS=eumetsat%3Amsgio_rgb_airmass
-ows?SERVICE=WMS&REQUEST=DescribeLayer&VERSION=1.1.1&LAYERS=eumetsat%3AMET9_RSS_RGBNatColour_PlateCarree
+ows?SERVICE=WMS&REQUEST=DescribeLayer&VERSION=1.1.1&LAYERS=eumetsat%3AMSG15_HRSEVIRI_RGB_AIRMASS_GEOTIFF
+ows?SERVICE=WMS&REQUEST=DescribeLayer&VERSION=1.1.1&LAYERS=eumetsat%3AMSG15_RSS_HRSEVIRI_RGB_NATCOLOR_GEOTIFF
 ows?SERVICE=WMS&REQUEST=DescribeLayer&VERSION=1.1.1&LAYERS=eumetsat%3Asst_orbits_composition
 ows?SERVICE=WMS&REQUEST=DescribeLayer&VERSION=1.1.1&LAYERS=eumetsat%3Aamv_composition
 ows?SERVICE=WMS&REQUEST=DescribeLayer&VERSION=1.1.1&LAYERS=eumetsat%3Ametopa_ascat
