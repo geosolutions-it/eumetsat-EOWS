@@ -1,4 +1,4 @@
 ows?service=WCS&version=2.0.1&request=GetCoverage&coverageId=MSG15_HRSEVIRI_RGB_AIRMASS_GEOTIFF&subset=Long(-32,-22)&subset=Lat(37,44)	200	image/tiff
 ows?service=WCS&version=2.0.0&request=GetCoverage&coverageId=MSG15_RSS_HRSEVIRI_RGB_NATCOLOR_GEOTIFF&subset=Long(-32,-22)&subset=Lat(37,44)	200	image/tiff
-ows?service=WCS&version=2.0.1&request=GetCoverage&coverageId=sst_orbits_composition&subset=Long(-6,30)&subset=Lat(-60,7)&format=application/x-netcdf	200	application/x-netcdf
+ows?service=WCS&version=2.0.1&request=GetCoverage&coverageId=sst_orbits_composition&subset=Long(-7,7)&subset=time(%222018-02-15T07:11:00.000Z%22)&format=application/x-netcdf	200	application/x-netcdf
 ows?service=WCS&version=2.0.1&request=GetCoverage&coverageId=amv_composition&subset=Long(0,40)&subset=Lat(25,50)	200	image/tiff
