@@ -49,8 +49,8 @@
   <ncml:attribute name="time_coverage_start" value="20170522T082849Z" />
   <ncml:attribute name="title" value="FAKEORG L3U SST" />
   <ncml:attribute name="westernmost_longitude" type="float" value="-179.95" />
-  <ncml:variable name="time" shape="time" type="float">
-    <ncml:attribute name="_FillValue" type="float" value="-2147483647" />
+  <ncml:variable name="time" shape="time" type="int">
+    <ncml:attribute name="_FillValue" type="int" value="-2147483647" />
     <ncml:attribute name="axis" value="T" />
     <ncml:attribute name="calendar" value="gregorian" />
     <ncml:attribute name="comment" value="A typical reference time for data" />
