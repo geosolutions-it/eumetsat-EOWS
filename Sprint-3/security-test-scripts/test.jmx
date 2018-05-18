@@ -7372,7 +7372,7 @@ and
     &lt;wps:Input&gt;&#xd;
       &lt;ows:Identifier&gt;time&lt;/ows:Identifier&gt;&#xd;
       &lt;wps:Data&gt;&#xd;
-        &lt;wps:LiteralData&gt;2018-01-25T18:40:00.000Z/2018-01-29T07:35:00.000Z/PT5M&lt;/wps:LiteralData&gt;&#xd;
+        &lt;wps:LiteralData&gt;2018-01-25T18:40:00.000Z/2018-01-26T07:35:00.000Z/PT5M&lt;/wps:LiteralData&gt;&#xd;
       &lt;/wps:Data&gt;&#xd;
     &lt;/wps:Input&gt;&#xd;
     &lt;wps:Input&gt;&#xd;
@@ -8092,7 +8092,7 @@ and
     &lt;wps:Input&gt;&#xd;
       &lt;ows:Identifier&gt;time&lt;/ows:Identifier&gt;&#xd;
       &lt;wps:Data&gt;&#xd;
-        &lt;wps:LiteralData&gt;2018-01-25T18:40:00.000Z/2018-01-29T07:35:00.000Z/PT5M&lt;/wps:LiteralData&gt;&#xd;
+        &lt;wps:LiteralData&gt;2018-01-25T18:40:00.000Z/2018-01-26T07:35:00.000Z/PT5M&lt;/wps:LiteralData&gt;&#xd;
       &lt;/wps:Data&gt;&#xd;
     &lt;/wps:Input&gt;&#xd;
     &lt;wps:Input&gt;&#xd;
