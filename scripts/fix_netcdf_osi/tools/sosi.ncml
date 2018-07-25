@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ncml:netcdf xmlns:ncml="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2" location="../workspace/in_progress.nc">
+  <ncml:dimension name="time" length="1" />
+  <ncml:dimension name="lat" length="3600" />
+  <ncml:dimension name="lon" length="7200" />
+  <ncml:attribute name="Conventions" value="CF-1.4" />
+  <ncml:attribute name="title" value="Sea Surface Temperature" />
+  <ncml:attribute name="summary" value="The GLB L3C product derived from METOP B AVHRR brightness temperatures." />
+  <ncml:attribute name="references" value="Low Earth Orbiter Sea Surface Temperature Product User Manual, http://www.osi-saf.org" />
+  <ncml:attribute name="institution" value="OSISAF" />
+  <ncml:attribute name="history" value="METEO-FRANCE/CMS LEOSAFO processor" />
+  <ncml:attribute name="comment" value="" />
+  <ncml:attribute name="license" value="All intellectual property rights of the Ocean &amp; Sea Ice SAF products belong to EUMETSAT. The use of these products is granted to every user, free of charge. If users wish to use these products, EUMETSAT's copyright credit must be shown by displaying the words 'Copyright EUMETSAT' under each of the products shown. EUMETSAT offers no warranty and accepts no liability in respect of the Ocean &amp; Sea Ice SAF products. EUMETSAT neither commits to nor guarantees the continuity, availability, or quality or suitability for any purpose of, the Ocean &amp; Sea Ice SAF products." />
+  <ncml:attribute name="id" value="AVHRR_SST_METOP_B_GLB-OSISAF-L3C-v1.0" />
+  <ncml:attribute name="naming_authority" value="org.ghrsst" />
+  <ncml:attribute name="product_version" value="1.0" />
+  <ncml:attribute name="uuid" value="A190FBA4-EC02-11E7-B415-2C44FD7FF654" />
+  <ncml:attribute name="gds_version_id" value="2.0" />
+  <ncml:attribute name="netcdf_version_id" value="4.3.2" />
+  <ncml:attribute name="date_created" value="20171228T190930Z" />
+  <ncml:attribute name="file_quality_level" type="int" value="3" />
+  <ncml:attribute name="spatial_resolution" value="0.05 degree" />
+  <ncml:attribute name="start_time" value="20171228T055803Z" />
+  <ncml:attribute name="time_coverage_start" value="20171228T055803Z" />
+  <ncml:attribute name="stop_time" value="20171228T180103Z" />
+  <ncml:attribute name="time_coverage_end" value="20171228T180103Z" />
+  <ncml:attribute name="northernmost_latitude" type="float" value="90.0" />
+  <ncml:attribute name="southernmost_latitude" type="float" value="-90.0" />
+  <ncml:attribute name="easternmost_longitude" type="float" value="180.0" />
+  <ncml:attribute name="westernmost_longitude" type="float" value="-180.0" />
+  <ncml:attribute name="source" value="AVHRR" />
+  <ncml:attribute name="platform" value="METOP_B" />
+  <ncml:attribute name="sensor" value="AVHRR" />
+  <ncml:attribute name="Metadata_Conventions" value="Unidata Dataset Discovery v1.0" />
+  <ncml:attribute name="metadata_link" value="N/A" />
+  <ncml:attribute name="keywords" value="Oceans &gt; Ocean Temperature &gt; Sea Surface Temperature " />
+  <ncml:attribute name="keywords_vocabulary" value="NASA Global Change Master Directory (GCMD) Science Keywords" />
+  <ncml:attribute name="standard_name_vocabulary" value="NetCDF Climate and Forecast (CF) Metadata Convention" />
+  <ncml:attribute name="geospatial_lat_units" value="degrees_north" />
+  <ncml:attribute name="geospatial_lat_resolution" type="double" value="0.05" />
+  <ncml:attribute name="geospatial_lon_units" value="degrees_east" />
+  <ncml:attribute name="geospatial_lon_resolution" type="double" value="0.05" />
+  <ncml:attribute name="acknowledgment" value="In case SAF data (pre-operational or operational) has been used for the study described in a paper the following sentence would be an appropriate reference to the funding coming from EUMETSAT: The data from the EUMETSAT Satellite Application Facility on Ocean &amp; Sea Ice  used in this study are accessible through the SAF's homepage http://www.osi-saf.org" />
+  <ncml:attribute name="creator_name" value="O&amp;SI SAF" />
+  <ncml:attribute name="creator_email" value="osi-saf.helpdesk@meteo.fr" />
+  <ncml:attribute name="creator_url" value="http://www.osi-saf.org" />
+  <ncml:attribute name="project" value="Group for High Resolution Sea Surface Temperature" />
+  <ncml:attribute name="publisher_name" value="The GHRSST Project Office" />
+  <ncml:attribute name="publisher_url" value="http://www.ghrsst.org" />
+  <ncml:attribute name="publisher_email" value="ghrsst-po@nceo.ac.uk" />
+  <ncml:attribute name="processing_level" value="L3C" />
+  <ncml:attribute name="cdm_data_type" value="grid" />
+  <ncml:variable name="time" shape="time" type="int">
+    <ncml:attribute name="long_name" value="reference time of sst file" />
+    <ncml:attribute name="standard_name" value="time" />
+    <ncml:attribute name="axis" value="T" />
+    <ncml:attribute name="units" value="seconds since 1981-01-01 00:00:00" />
+    <ncml:attribute name="comment" value="includes leap seconds since 1981" />
+    <ncml:attribute name="_ChunkSizes" type="int" value="1" />
+  </ncml:variable>
+  <ncml:variable name="lat" shape="lat" type="float">
+    <ncml:attribute name="long_name" value="latitude" />
+    <ncml:attribute name="standard_name" value="latitude" />
+    <ncml:attribute name="axis" value="Y" />
+    <ncml:attribute name="units" value="degrees_north" />
+    <ncml:attribute name="valid_min" type="float" value="-90.0" />
+    <ncml:attribute name="valid_max" type="float" value="90.0" />
+    <ncml:attribute name="comment" value="geographical coordinates, WGS84 projection" />
+    <ncml:attribute name="_ChunkSizes" type="int" value="3600" />
+  </ncml:variable>
+  <ncml:variable name="lon" shape="lon" type="float">
+    <ncml:attribute name="long_name" value="longitude" />
+    <ncml:attribute name="standard_name" value="longitude" />
+    <ncml:attribute name="axis" value="X" />
+    <ncml:attribute name="units" value="degrees_east" />
+    <ncml:attribute name="valid_min" type="float" value="-180.0" />
+    <ncml:attribute name="valid_max" type="float" value="180.0" />
+    <ncml:attribute name="comment" value="geographical coordinates, WGS84 projection" />
+    <ncml:attribute name="_ChunkSizes" type="int" value="7200" />
+  </ncml:variable>
+  <ncml:variable name="sea_surface_temperature" shape="time lat lon" type="float">
+    <ncml:attribute name="_FillValue" type="float" value="-32768.0" />
+    <ncml:attribute name="long_name" value="sea surface subskin temperature" />
+    <ncml:attribute name="standard_name" value="sea_surface_subskin_temperature" />
+    <ncml:attribute name="units" value="kelvin" />
+    <ncml:attribute name="add_offset" type="double" value="273.15" />
+    <ncml:attribute name="scale_factor" type="double" value="0.01" />
+    <ncml:attribute name="valid_min" type="short" value="-300" />
+    <ncml:attribute name="valid_max" type="short" value="4500" />
+    <ncml:attribute name="depth" value="1 millimeter" />
+    <ncml:attribute name="source" value="AVHRR_METOP_B" />
+    <ncml:attribute name="comment" value="Temperature of the subskin of the ocean" />
+    <ncml:attribute name="_ChunkSizes" type="int" value="1 256 256" />
+  </ncml:variable>
+  <ncml:variable name="sst_dtime" shape="time lat lon" type="float">
+    <ncml:attribute name="_FillValue" type="float" value="-2.14748365E9" />
+    <ncml:attribute name="long_name" value="time difference from reference time" />
+    <ncml:attribute name="units" value="seconds" />
+    <ncml:attribute name="add_offset" type="double" value="0.0" />
+    <ncml:attribute name="scale_factor" type="double" value="1.0" />
+    <ncml:attribute name="valid_min" type="int" value="-2147483647" />
+    <ncml:attribute name="valid_max" type="int" value="2147483647" />
+    <ncml:attribute name="comment" value="time plus sst_dtime gives seconds after 00:00:00 UTC January 1, 1981" />
+    <ncml:attribute name="_ChunkSizes" type="int" value="1 256 256" />
+  </ncml:variable>
+  <ncml:variable name="sses_bias" shape="time lat lon" type="float">
+    <ncml:attribute name="_FillValue" type="float" value="-128.0" />
+    <ncml:attribute name="long_name" value="SSES bias estimate" />
+    <ncml:attribute name="units" value="kelvin" />
+    <ncml:attribute name="add_offset" type="double" value="0.0" />
+    <ncml:attribute name="scale_factor" type="double" value="0.01" />
+    <ncml:attribute name="valid_min" type="byte" value="-127" />
+    <ncml:attribute name="valid_max" type="byte" value="127" />
+    <ncml:attribute name="comment" value="Bias estimate derived using the techniques described at http://www.ghrsst.org/SSES-Description-of-schemes.html" />
+    <ncml:attribute name="_ChunkSizes" type="int" value="1 256 256" />
+  </ncml:variable>
+  <ncml:variable name="sses_standard_deviation" shape="time lat lon" type="float">
+    <ncml:attribute name="_FillValue" type="float" value="-128.0" />
+    <ncml:attribute name="long_name" value="SSES standard deviation" />
+    <ncml:attribute name="units" value="kelvin" />
+    <ncml:attribute name="add_offset" type="double" value="1.0" />
+    <ncml:attribute name="scale_factor" type="double" value="0.01" />
+    <ncml:attribute name="valid_min" type="byte" value="-127" />
+    <ncml:attribute name="valid_max" type="byte" value="127" />
+    <ncml:attribute name="comment" value="Standard deviation estimate derived using the techniques described at http://www.ghrsst.org/SSES-Description-of-schemes.html" />
+    <ncml:attribute name="_ChunkSizes" type="int" value="1 256 256" />
+  </ncml:variable>
+  <ncml:variable name="dt_analysis" shape="time lat lon" type="float">
+    <ncml:attribute name="_FillValue" type="float" value="-128.0" />
+    <ncml:attribute name="long_name" value="deviation from SST analysis or reference climatology" />
+    <ncml:attribute name="units" value="kelvin" />
+    <ncml:attribute name="add_offset" type="double" value="0.0" />
+    <ncml:attribute name="scale_factor" type="double" value="0.1" />
+    <ncml:attribute name="valid_min" type="byte" value="-127" />
+    <ncml:attribute name="valid_max" type="byte" value="127" />
+    <ncml:attribute name="reference" value="OSTIA" />
+    <ncml:attribute name="comment" value="The difference between this SST and the previous day's SST analysis" />
+    <ncml:attribute name="_ChunkSizes" type="int" value="1 256 256" />
+  </ncml:variable>
+  <ncml:variable name="wind_speed" shape="time lat lon" type="float">
+    <ncml:attribute name="_FillValue" type="float" value="-128.0" />
+    <ncml:attribute name="long_name" value="10m wind speed" />
+    <ncml:attribute name="standard_name" value="wind_speed" />
+    <ncml:attribute name="units" value="m s-1" />
+    <ncml:attribute name="height" value="10 m" />
+    <ncml:attribute name="add_offset" type="double" value="0.0" />
+    <ncml:attribute name="scale_factor" type="double" value="1.0" />
+    <ncml:attribute name="valid_min" type="byte" value="0" />
+    <ncml:attribute name="valid_max" type="byte" value="127" />
+    <ncml:attribute name="time_offset" type="double" value="0.0" />
+    <ncml:attribute name="source" value="WSP-ECMWF-Forecast" />
+    <ncml:attribute name="comment" value="These wind speeds were created by the ECMWF and represent winds at 10 metres above the sea surface. " />
+    <ncml:attribute name="_ChunkSizes" type="int" value="1 256 256" />
+  </ncml:variable>
+  <ncml:variable name="sea_ice_fraction" shape="time lat lon" type="float">
+    <ncml:attribute name="_FillValue" type="float" value="-128.0" />
+    <ncml:attribute name="long_name" value="sea ice fraction" />
+    <ncml:attribute name="standard_name" value="sea_ice_area_fraction" />
+    <ncml:attribute name="units" value=" " />
+    <ncml:attribute name="add_offset" type="double" value="0.0" />
+    <ncml:attribute name="scale_factor" type="double" value="0.01" />
+    <ncml:attribute name="valid_min" type="byte" value="0" />
+    <ncml:attribute name="valid_max" type="byte" value="100" />
+    <ncml:attribute name="time_offset" type="double" value="0.0" />
+    <ncml:attribute name="source" value="ICE-OSISAF" />
+    <ncml:attribute name="comment" value="Fractional sea ice cover from OSISAF ice product" />
+    <ncml:attribute name="_ChunkSizes" type="int" value="1 256 256" />
+  </ncml:variable>
+  <ncml:variable name="aerosol_dynamic_indicator" shape="time lat lon" type="float">
+    <ncml:attribute name="_FillValue" type="float" value="-128.0" />
+    <ncml:attribute name="long_name" value="aerosol dynamic indicator" />
+    <ncml:attribute name="units" value=" " />
+    <ncml:attribute name="add_offset" type="double" value="0.0" />
+    <ncml:attribute name="scale_factor" type="double" value="0.1" />
+    <ncml:attribute name="valid_min" type="byte" value="0" />
+    <ncml:attribute name="valid_max" type="byte" value="127" />
+    <ncml:attribute name="source" value="sources_of_adi" />
+    <ncml:attribute name="comment" value="" />
+    <ncml:attribute name="_ChunkSizes" type="int" value="1 256 256" />
+  </ncml:variable>
+  <ncml:variable name="adi_dtime_from_sst" shape="time lat lon" type="float">
+    <ncml:attribute name="_FillValue" type="float" value="-128.0" />
+    <ncml:attribute name="long_name" value="time difference of ADI data from sst measurement" />
+    <ncml:attribute name="units" value="hour" />
+    <ncml:attribute name="add_offset" type="double" value="0.0" />
+    <ncml:attribute name="scale_factor" type="double" value="0.1" />
+    <ncml:attribute name="valid_min" type="byte" value="-127" />
+    <ncml:attribute name="valid_max" type="byte" value="127" />
+    <ncml:attribute name="comment" value="Difference in hours between the ADI and SST data" />
+    <ncml:attribute name="_ChunkSizes" type="int" value="1 256 256" />
+  </ncml:variable>
+  <ncml:variable name="sources_of_adi" shape="time lat lon" type="float">
+    <ncml:attribute name="valid_min" type="byte" value="0" />
+    <ncml:attribute name="valid_max" type="byte" value="2" />
+    <ncml:attribute name="flag_meanings" value="no_data AOD-NAAPS-ADI SDI-OSISAF-ADI" />
+    <ncml:attribute name="flag_values" type="byte" value="0 1 2" />
+    <ncml:attribute name="comment" value="This variable provides a pixel by pixel description of where aerosol optical depth were derived from." />
+    <ncml:attribute name="_FillValue" type="byte" value="-128" />
+    <ncml:attribute name="long_name" value="sources of aerosol dynamic indicator" />
+    <ncml:attribute name="_ChunkSizes" type="int" value="1 256 256" />
+    <ncml:attribute name="add_offset" type="double" value="0.0" />
+    <ncml:attribute name="scale_factor" type="double" value="1.0" />
+  </ncml:variable>
+  <ncml:variable name="l2p_flags" shape="time lat lon" type="float">
+    <ncml:attribute name="long_name" value="L2P flags" />
+    <ncml:attribute name="valid_min" type="short" value="0" />
+    <ncml:attribute name="valid_max" type="short" value="15" />
+    <ncml:attribute name="flag_meanings" value="microwave land ice lake" />
+    <ncml:attribute name="flag_masks" type="short" value="1 2 4 8" />
+    <ncml:attribute name="comment" value="These flags are important to properly use the data." />
+    <ncml:attribute name="_ChunkSizes" type="int" value="1 256 256" />
+    <ncml:attribute name="add_offset" type="double" value="0.0" />
+    <ncml:attribute name="scale_factor" type="double" value="1.0" />
+  </ncml:variable>
+  <ncml:variable name="quality_level" shape="time lat lon" type="float">
+    <ncml:attribute name="_FillValue" type="float" value="-128.0" />
+    <ncml:attribute name="long_name" value="quality level of SST pixel" />
+    <ncml:attribute name="valid_min" type="byte" value="0" />
+    <ncml:attribute name="valid_max" type="byte" value="5" />
+    <ncml:attribute name="flag_meanings" value="no_data bad_data worst_quality low_quality acceptable_quality best_quality" />
+    <ncml:attribute name="flag_values" type="byte" value="0 1 2 3 4 5" />
+    <ncml:attribute name="comment" value="These are the overall quality indicators and are used for all GHRSST SSTs" />
+    <ncml:attribute name="_ChunkSizes" type="int" value="1 256 256" />
+    <ncml:attribute name="add_offset" type="double" value="0.0" />
+    <ncml:attribute name="scale_factor" type="double" value="1.0" />
+  </ncml:variable>
+  <ncml:variable name="satellite_zenith_angle" shape="time lat lon" type="float">
+    <ncml:attribute name="_FillValue" type="float" value="-128.0" />
+    <ncml:attribute name="long_name" value="satellite zenith angle" />
+    <ncml:attribute name="units" value="angular_degree" />
+    <ncml:attribute name="add_offset" type="double" value="0.0" />
+    <ncml:attribute name="scale_factor" type="double" value="1.0" />
+    <ncml:attribute name="valid_min" type="byte" value="-90" />
+    <ncml:attribute name="valid_max" type="byte" value="90" />
+    <ncml:attribute name="comment" value="The satellite zenith angle at the time of the SST observations." />
+    <ncml:attribute name="_ChunkSizes" type="int" value="1 256 256" />
+  </ncml:variable>
+  <ncml:variable name="solar_zenith_angle" shape="time lat lon" type="float">
+    <ncml:attribute name="_FillValue" type="float" value="-128.0" />
+    <ncml:attribute name="long_name" value="solar zenith angle" />
+    <ncml:attribute name="units" value="angular_degree" />
+    <ncml:attribute name="add_offset" type="double" value="90.0" />
+    <ncml:attribute name="scale_factor" type="double" value="1.0" />
+    <ncml:attribute name="valid_min" type="byte" value="-90" />
+    <ncml:attribute name="valid_max" type="byte" value="90" />
+    <ncml:attribute name="comment" value="The solar zenith angle at the time of the SST observations." />
+    <ncml:attribute name="_ChunkSizes" type="int" value="1 256 256" />
+  </ncml:variable>
+</ncml:netcdf>
