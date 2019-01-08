@@ -1,0 +1,5 @@
+ows?service=WCS&version=2.0.1&request=DescribeCoverage&coverageId=MSG15_HRSEVIRI_RGB_AIRMASS_GEOTIFF	200	application/xml
+ows?service=WCS&version=2.0.1&request=DescribeCoverage&coverageId=MSG15_RSS_HRSEVIRI_RGB_NATCOLOR_GEOTIFF	40(1|3)	text/html
+ows?service=WCS&version=2.0.1&request=DescribeCoverage&coverageId=sst_orbits_composition	40(1|3)	text/html
+ows?service=WCS&version=2.0.1&request=DescribeCoverage&coverageId=SOSI	40(1|3)	text/html
+ows?service=WCS&version=2.0.1&request=DescribeCoverage&coverageId=amv_composition	200	application/xml
