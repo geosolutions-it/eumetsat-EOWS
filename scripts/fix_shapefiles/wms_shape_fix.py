@@ -19,7 +19,7 @@ def convert(input, output=None):
         fieldsNew.append(tuple(lst))
 
     print "Converted to " + str(fieldsNew)
-    w = shapefile.Writer()
+    w = shapefile.Writer(output)
     w.fields = fieldsNew
 
     print "Copy shape attributes..."
@@ -28,7 +28,7 @@ def convert(input, output=None):
         w.point(shaperec.shape.points[0][0], shaperec.shape.points[0][1])
 
     print "Save file to: " + output
-    w.save(output)
+    w.close()
 
 
 if __name__ == "__main__":
