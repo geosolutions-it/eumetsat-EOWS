@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  In a mirror mode, It will cache all LAYERS combination on getmap requests that corresponds to a configured <grid>, and will forward the rest to the original wms server.
+  No need to indicate the cached layers in the source.
+  split_mirror means that it will cache all layers individually and combined_mirror one image for all requested layers
+  Beware you can only have one tileset in split_mirror
+-->
+<mapcache mode="split_mirror">
+   
+   <cache name="disk" type="disk">
+      <base>/tmp</base>
+      <symlink_blank/>
+   </cache>
+   
+   <cache name="memory" type="memcache">
+     <detect_blank/>
+     <server>
+        <host>memcached</host>
+        <port>11211</port>
+     </server>
+   </cache>
+
+   <cache name="multitier-cache" type="multitier">
+      <cache>memory</cache>
+      <cache>disk</cache>>
+   </cache>
+
+   <!-- The source is used to defined which requests are gonna go with the cache and which ones are
+        going to go to geoserver. No layers have been defined here because split_mirror mode is used (see above). -->
+   <source name="eumetview" type="wms">
+      <getmap>
+         <params>
+            <!-- only png8 that are used for mapviewer are going to be cached. All full resolution/full image requests will go to geoserver -->         
+            <FORMAT>image/png8</FORMAT>
+            <TRANSPARENT>true</TRANSPARENT>
+         </params>
+      </getmap>   
+      <http>
+         <!--<url>https://view.eumetsat.int/geoserver/wms?</url>-->
+         <url>http://geoserver:8080/geoserver/wms?</url>
+      </http>
+   </source>
+   
+    <!-- The 2 grids defined in EUMETView -->
+	<grid name="EPSG4326">
+	   <metadata>
+		  <title>EPSG4326, WSG84</title>
+		  <WellKnownScaleSet>urn:ogc:def:wkss:OGC:1.0:GoogleCRS84Quad</WellKnownScaleSet>
+	   </metadata>
+	   <extent>-180 -90 180 90</extent>
+	   <srs>EPSG:4326</srs>
+	   <srsalias>WSG84</srsalias>
+	   <units>dd</units>
+	   <size>256 256</size>
+	  <resolutions>0.31 0.155 0.0775 0.03875 0.019375 0.0096875 0.00484375 0.002421875 0.0012109375 0.00060546875</resolutions>
+	</grid>
+
+    <!-- second grid EPSG 3995 -->
+	<grid name="EPSG3995">
+	   <metadata>
+		  <title>EPSG3995</title>
+	   </metadata>
+	   <extent>-12700000 -12700000 12700000 12700000</extent>
+	   <srs>EPSG:3995</srs>
+	   <units>m</units>
+	   <size>256 256</size>
+	   <resolutions>22600 11300 5650 2825 1412.5 706.25 353.125 176.5625 88.28125 44.140625</resolutions>
+	</grid>
+
+    <!-- one eumetview tileset with the eumetview source and the 2 supported grids and a time dimension.
+         With the split_mirror mode only one tileset can be defined. 
+     -->
+   <tileset name="eumetview">
+      <source>eumetview</source>
+      <cache>multitier-cache</cache>
+      <grid use_wms_intermediate_resolutions="true">EPSG4326</grid>
+      <grid use_wms_intermediate_resolutions="true">EPSG3995</grid>
+      <dimensions>
+        <dimension type="regex" name="TIME" default="now">
+          <regex>^.*$</regex>
+        </dimension>
+      </dimensions>
+
+      <!-- format for storing the information. No format stored as received -->
+      <format>PNG</format>
+      <metatile>4 4</metatile>
+      <metabuffer>10</metabuffer>
+
+      <!-- expires
+
+        Optional tile expiration value in seconds. This is expressed as
+        number of seconds after creation date of the tile. This is the value
+        that will be set in the HTTP Expires and Cache-Control headers, and
+        has no effect on the actual expiration of tiles in the caches (see
+        <auto_expire> for that). Defaults to 300 if unset.
+      -->
+      <expires>3600</expires>
+      <!-- auto_expire
+
+        Tiles older (in seconds) than this value will be re-requested and
+        updated in the cache. Note that this will only delete tiles from the
+        cache when they are accessed: You cannot use this configuration to
+        limit the size of the created cache. Note that, if set, this value
+        overrides the value given by <expires>. By default tiles don't expire.
+      -->
+      <auto_expire>259200</auto_expire>
+   </tileset>
+
+   <default_format>PNG</default_format>
+
+   <!-- Frontend service -->
+   <service type="wms" enabled="true">
+      <!-- forward will forward any request to the catch all that are not matched by the tileset (and associated source) -->
+      <full_wms>forward</full_wms>
+      <!-- bilinear interpolation used when assembling tiles -->
+      <resample_mode>bilinear</resample_mode>
+      <format allow_client_override="false">PNG</format>
+      <maxsize>163840</maxsize>
+      <forwarding_rule name="catch all">
+            <http>
+               <!--<url>https://view.eumetsat.int/geoserver/wms?</url>-->
+               <url>http://geoserver:8080/geoserver/wms?</url>
+            </http>
+      </forwarding_rule>
+
+   </service>
+
+   <service type="wmts" enabled="true"/>
+   <service type="kml" enabled="true"/>
+   <service type="tms" enabled="true"/>
+   <service type="gmaps" enabled="true"/>
+   <service type="ve" enabled="false"/>
+   <service type="demo" enabled="false"/>
+
+   <errors>report</errors>
+   <log_level>debug</log_level>
+   <auto_reload>true</auto_reload>
+   <lock_dir>/tmp</lock_dir>
+
+   <connection_pool>
+     <max_connections>2000</max_connections>
+     <time_to_live_us>1000000</time_to_live_us>
+   </connection_pool>
+   
+   <threaded_fetching>true</threaded_fetching>
+</mapcache>

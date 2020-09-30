@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  memcached:
+    image: 'docker.io/bitnami/memcached:1-debian-10'
+    hostname: memcached
+    ports:
+      - '11211:11211'
+
+  mapcache:
+    image: 'camptocamp/mapcache:1.6'
+    hostname: mapcache
+    ports:
+      - '8081:80' 
+    volumes:
+      - './cache:/tmp:rw' 
+      - './eumetsat-ng-config.xml:/etc/mapcache/mapcache.xml' 
+
+  apache:
+    image: 'wlniao/php'
+    hostname: apache
+    ports:
+      - '8082:80' 
+    volumes:
+      - './data/apache/:/var/www/html' 
+
+  geoserver:
+    image: 'oscarfonts/geoserver'
+    hostname: geoserver
+    env_file:
+      - ./geoserver.env
+    ports:
+      - '8080:8080'
+    volumes:
+      - './data/geoserver/data_dir/:/var/local/geoserver'
+    restart: on-failure
+
+  
+  
+  
+
+
