@@ -1,4 +1,4 @@
-Guide for testing MapStore integration
+Guide for testing MapCache integration
 
 Docker-compose file defines 4 services:
 
