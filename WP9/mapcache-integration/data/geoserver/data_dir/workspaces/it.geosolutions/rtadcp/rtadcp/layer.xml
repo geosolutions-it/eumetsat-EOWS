@@ -1,0 +1,17 @@
+<layer>
+  <name>rtadcp</name>
+  <id>LayerInfoImpl-43a79638:174e989356c:-7ffc</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--570ae188:124761b8d78:-7fdf</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl-43a79638:174e989356c:-7ffd</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateCreated>2020-10-02 14:26:53.719 UTC</dateCreated>
+  <dateModified>2020-10-02 14:40:27.348 UTC</dateModified>
+</layer>

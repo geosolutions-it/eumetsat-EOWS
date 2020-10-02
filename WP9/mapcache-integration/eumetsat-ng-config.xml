@@ -8,8 +8,9 @@
 -->
 <mapcache mode="split_mirror">
    
-   <cache name="disk" type="disk">
-      <base>/tmp</base>
+   <cache name="disk" type="disk" layout="template">
+      <template>/tmp/{dim}/{tileset}/{grid}/{z}/{x}/{y}.{ext}</template>
+      <!--<base>/tmp</base>-->
       <symlink_blank/>
    </cache>
    

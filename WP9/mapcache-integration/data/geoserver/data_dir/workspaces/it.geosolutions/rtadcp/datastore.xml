@@ -1,0 +1,23 @@
+<dataStore>
+  <id>DataStoreInfoImpl-43a79638:174e989356c:-7fff</id>
+  <name>rtadcp</name>
+  <type>Shapefile</type>
+  <enabled>true</enabled>
+  <workspace>
+    <id>WorkspaceInfoImpl--570ae188:124761b8d78:-7ffb</id>
+  </workspace>
+  <connectionParameters>
+    <entry key="charset">ISO-8859-1</entry>
+    <entry key="filetype">shapefile</entry>
+    <entry key="create spatial index">true</entry>
+    <entry key="memory mapped buffer">false</entry>
+    <entry key="timezone">Etc/UTC</entry>
+    <entry key="enable spatial index">true</entry>
+    <entry key="namespace">http://www.geo-solutions.it</entry>
+    <entry key="cache and reuse memory maps">true</entry>
+    <entry key="url">file:data/rtadcp/rtadcp.shp</entry>
+    <entry key="fstype">shape</entry>
+  </connectionParameters>
+  <__default>false</__default>
+  <dateCreated>2020-10-02 14:24:45.743 UTC</dateCreated>
+</dataStore>
