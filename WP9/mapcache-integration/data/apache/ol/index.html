@@ -62,8 +62,8 @@ function init(){
   );
   map.addLayer(tasmania_EPSG4326_wms_layer);
 
-  /*var mirror_EPSG3995_wms_layer = new OpenLayers.Layer.WMS( "tasmania-EPSG3995-WMS",
-      "http://localhost:8081/mapcache/?",{layers: 'tiger-ny'},
+  var tasmania_EPSG3995_wms_layer = new OpenLayers.Layer.WMS( "tasmania-EPSG3995-WMS",
+      "http://localhost:8081/mapcache/?",{layers: 'tasmania'},
       { gutter:0,buffer:0,isBaseLayer:true,transitionEffect:'resize',
         resolutions:[22600.00000000000000000000,11300.00000000000000000000,5650.00000000000000000000,2825.00000000000000000000,1412.50000000000000000000,706.25000000000000000000,353.12500000000000000000,176.56250000000000000000,88.28125000000000000000,44.14062500000000000000],
         units:"m",
@@ -72,7 +72,7 @@ function init(){
         sphericalMercator: false
       }
   );
-  map.addLayer(mirror_EPSG3995_wms_layer);*/
+  map.addLayer(tasmania_EPSG3995_wms_layer);
 
   if(!map.getCenter())
       map.zoomToMaxExtent();
