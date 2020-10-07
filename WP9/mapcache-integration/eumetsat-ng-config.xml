@@ -81,6 +81,13 @@
         <dimension type="regex" name="TIME" default="now">
           <regex>^.*$</regex>
         </dimension>
+        <!--<dimension type="postgresql" name="source" default="GEOS">
+            <connection>
+               host=db user=docker password=docker dbname=gis port=5432
+            </connection>
+            <list_query>SELECT distinct(source) FROM public.rtadcp</list_query>
+            <validate_query>SELECT label FROM public.rtadcp WHERE source=:dim</validate_query>
+         </dimension>-->
       </dimensions>
 
       <!-- format for storing the information. No format stored as received -->
