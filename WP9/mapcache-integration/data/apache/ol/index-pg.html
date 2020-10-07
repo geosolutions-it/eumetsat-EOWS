@@ -1,0 +1,54 @@
+<html><head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <title>local layers demo</title>
+  <style type="text/css">
+  html, body {
+      height: 100%;
+      width: 100%;
+      border: 0px;
+      margin: 0px;
+      padding: 0px;
+  }
+  #map {
+      width: calc(100% - 2px);
+      height: calc(100% - 2px);
+      border: 1px solid black;
+      margin: 0px;
+      padding: 0px;
+  }
+  </style>
+  <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+  <script type="text/javascript">
+
+var map;
+function init(){
+  map = new OpenLayers.Map( 'map', {
+      displayProjection: new OpenLayers.Projection("EPSG:4326")
+  } );
+
+  var rtadcp_postgis_EPSG4326_wms_layer = new OpenLayers.Layer.WMS( "rtadcp-postgis-EPSG4326-WMS",
+      "http://localhost:8081/mapcache/?",{layers: 'rtadcp-postgis', source:'GEOS3'},
+      { gutter:0,buffer:0,isBaseLayer:true,transitionEffect:'resize',
+        resolutions:[19.83999999999999985789,9.91999999999999992895,4.95999999999999996447,2.47999999999999998224,1.23999999999999999112,0.62000000000000001776,0.31000000000000000888,0.15500000000000000000,0.07750000000000000000,0.03875000000000000000,0.01937500000000000000,0.00968750000000000000,0.00484375000000000000,0.00242187500000000000,0.00121093750000000000,0.00060546875000000000,0.00030273400000000001,0.00015136700000000001,0.00007568300000000000],
+        units:"dd",
+        maxExtent: new OpenLayers.Bounds(-180.000000,-90.000000,180.000000,90.000000),
+        projection: new OpenLayers.Projection("EPSG:4326".toUpperCase()),
+        sphericalMercator: false
+      }
+  );
+  map.addLayer(rtadcp_postgis_EPSG4326_wms_layer);
+
+  if(!map.getCenter())
+      map.zoomToMaxExtent();
+  map.addControl(new OpenLayers.Control.LayerSwitcher());
+  map.addControl(new OpenLayers.Control.MousePosition());
+}
+  </script>
+<link rel="stylesheet" type="text/css" href="http://www.openlayers.org/api/theme/default/style.css"></head>
+
+<body onload="init()">
+  <div id="map" class="olMap">
+   </div>
+
+
+</body></html>

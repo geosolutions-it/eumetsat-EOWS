@@ -26,18 +26,6 @@ function init(){
       displayProjection: new OpenLayers.Projection("EPSG:4326")
   } );
 
-  var rtadcp_postgis_EPSG4326_wms_layer = new OpenLayers.Layer.WMS( "rtadcp-postgis-EPSG4326-WMS",
-      "http://localhost:8081/mapcache/?",{layers: 'rtadcp-postgis'},
-      { gutter:0,buffer:0,isBaseLayer:true,transitionEffect:'resize',
-        resolutions:[19.83999999999999985789,9.91999999999999992895,4.95999999999999996447,2.47999999999999998224,1.23999999999999999112,0.62000000000000001776,0.31000000000000000888,0.15500000000000000000,0.07750000000000000000,0.03875000000000000000,0.01937500000000000000,0.00968750000000000000,0.00484375000000000000,0.00242187500000000000,0.00121093750000000000,0.00060546875000000000,0.00030273400000000001,0.00015136700000000001,0.00007568300000000000],
-        units:"dd",
-        maxExtent: new OpenLayers.Bounds(-180.000000,-90.000000,180.000000,90.000000),
-        projection: new OpenLayers.Projection("EPSG:4326".toUpperCase()),
-        sphericalMercator: false
-      }
-  );
-  map.addLayer(rtadcp_postgis_EPSG4326_wms_layer);
-
   var rtadcp_EPSG4326_wms_layer = new OpenLayers.Layer.WMS( "rtadcp-EPSG4326-WMS",
       "http://localhost:8081/mapcache/?",{layers: 'rtadcp'},
       { gutter:0,buffer:0,isBaseLayer:true,transitionEffect:'resize',
