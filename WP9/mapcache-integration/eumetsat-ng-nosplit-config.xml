@@ -34,18 +34,11 @@
 
    <default_format>PNG</default_format>
 
-<!-- http://localhost:8081/mapcache/?LAYERS=tasmania&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&STYLES=&FORMAT=image%2Fjpeg&SRS=EPSG%3A4326&BBOX=137.44,-50.32,147.36,-40.4&WIDTH=256&HEIGHT=256-->
-
    <service type="wms" enabled="true">
-      <full_wms>forward</full_wms>
+      <full_wms>assemble</full_wms>
       <resample_mode>bilinear</resample_mode>
       <format allow_client_override="false">PNG</format>
       <maxsize>163840</maxsize>
-      <!--<forwarding_rule name="catch all">
-            <http>
-               <url>http://geoserver:8080/geoserver/wms?</url>
-            </http>
-      </forwarding_rule>-->
    </service>
 
    <service type="wmts" enabled="true"/>
