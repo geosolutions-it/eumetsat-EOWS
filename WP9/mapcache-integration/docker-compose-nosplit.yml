@@ -1,0 +1,68 @@
+version: '3'
+
+services:
+  memcached:
+    image: 'docker.io/bitnami/memcached:1-debian-10'
+    hostname: memcached
+    ports:
+      - '11211:11211'
+
+  mapcache:
+    image: 'geosolutionsit/mapcache:1.8-postgresql'
+    hostname: mapcache
+    ports:
+      - '8081:80' 
+    volumes:
+      - './cache:/tmp:rw' 
+      - './eumetsat-ng-nosplit-config.xml:/etc/mapcache/mapcache.xml' 
+
+  apache:
+    image: 'wlniao/php'
+    hostname: apache
+    ports:
+      - '8082:80' 
+    volumes:
+      - './data/apache/:/var/www/html' 
+
+  geoserver:
+    image: 'oscarfonts/geoserver'
+    hostname: geoserver
+    env_file:
+      - ./geoserver.env
+    ports:
+      - '8080:8080'
+    volumes:
+      - './data/geoserver/data_dir/:/var/local/geoserver'
+    restart: on-failure
+
+  pgadmin:
+    hostname: pgadmin
+    image: 'dpage/pgadmin4'
+    environment:
+      - PGADMIN_LISTEN_PORT=80
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=1234
+    volumes:
+      - './data/pgadmin/servers.json:/pgadmin4/servers.json'
+    ports:
+      - '81:80'
+      
+  db:
+    image: 'kartoza/postgis:9.6-2.4'
+    hostname: db
+    env_file:
+      - ./postgis.env
+    ports:
+      - '5432:5432'
+    volumes:
+      - './data/pg/postgis-data:/var/lib/postgresql'
+    restart: on-failure
+    healthcheck:
+      test: "exit 0"
+
+
+  
+  
+  
+
+

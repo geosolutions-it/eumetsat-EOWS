@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapcache>
+   <cache name="disk" type="disk">
+      <base>/tmp</base>
+      <symlink_blank/>
+      <detect_blank/>
+   </cache>
+
+   <source name="eumetview" type="wms">
+      <getmap>
+         <params>
+            <FORMAT>image/png8</FORMAT>
+            <LAYERS>tasmania</LAYERS>
+         </params>
+      </getmap>   
+      <http>
+         <url>http://geoserver:8080/geoserver/wms?</url>
+      </http>
+   </source>
+   
+   <!-- one eumetview tileset with the eumetview source and the 2 supported grids and a time dimension.
+         With the split_mirror mode only one tileset can be defined. 
+     -->
+   <tileset name="eumetview">
+      <source>eumetview</source>
+      <cache>disk</cache>
+      <grid>WGS84</grid>
+      <format>PNG</format>
+      <metatile>4 4</metatile>
+      <metabuffer>10</metabuffer>
+      <expires>3600</expires>
+      <auto_expire>259200</auto_expire>
+   </tileset>
+
+   <default_format>PNG</default_format>
+
+<!-- http://localhost:8081/mapcache/?LAYERS=tasmania&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&STYLES=&FORMAT=image%2Fjpeg&SRS=EPSG%3A4326&BBOX=137.44,-50.32,147.36,-40.4&WIDTH=256&HEIGHT=256-->
+
+   <service type="wms" enabled="true">
+      <full_wms>forward</full_wms>
+      <resample_mode>bilinear</resample_mode>
+      <format allow_client_override="false">PNG</format>
+      <maxsize>163840</maxsize>
+      <!--<forwarding_rule name="catch all">
+            <http>
+               <url>http://geoserver:8080/geoserver/wms?</url>
+            </http>
+      </forwarding_rule>-->
+   </service>
+
+   <service type="wmts" enabled="true"/>
+   <service type="tms" enabled="true"/>
+   <service type="kml" enabled="true"/>
+   <service type="gmaps" enabled="true"/>
+   <service type="ve" enabled="true"/>
+   <service type="demo" enabled="true"/>
+
+   <errors>report</errors>
+   
+   <locker type="disk">  <!-- this is the default -->
+     <directory>/tmp</directory>
+     <retry>0.01</retry> <!-- check back every .01 seconds -->
+   </locker>
+
+   <lock_dir>/tmp</lock_dir>  <!-- deprecated, use <locker type="disk"> -->
+
+   <threaded_fetching>true</threaded_fetching>
+   <connection_pool>
+     <max_connections>2000</max_connections>
+     <time_to_live_us>1000000</time_to_live_us>
+   </connection_pool>
+   <log_level>info</log_level> <!-- logging verbosity -->
+   <auto_reload>true</auto_reload> <!-- auto reload if config file changed -->
+
+</mapcache>
