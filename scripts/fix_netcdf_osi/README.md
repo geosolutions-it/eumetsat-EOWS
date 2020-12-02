@@ -9,7 +9,8 @@ This script is for Bash
 
 * Java 7 or later
 * [NetCDF-Java](https://artifacts.unidata.ucar.edu/repository/unidata-releases/edu/ucar/netcdfAll/4.6.11/netcdfAll-4.6.11.jar)
-* [NetCDF4 native library](https://www.unidata.ucar.edu/software/thredds/current/netcdf-java/reference/netcdf4Clibrary.html)
+* [NetCDF4 native library](https://www.unidata.ucar.edu/software/netcdf/docs/getting_and_building_netcdf.html)
+  * Depending on your OS, you may need to build the NetCDF4 on your own as explained [here]( https://www.unidata.ucar.edu/software/netcdf/docs/getting_and_building_netcdf.html#build_default)
 
 ## Steps
 
