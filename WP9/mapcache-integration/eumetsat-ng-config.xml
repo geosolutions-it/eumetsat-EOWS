@@ -27,6 +27,43 @@
       <cache>disk</cache>>
    </cache>
 
+   <!-- 24 or 32 bit RGB/RGBA PNG -->   
+   <format name="PNG_FAST" type ="PNG">
+      <compression>fast</compression>
+   </format>
+
+   <format name="PNG_BEST" type ="PNG">
+      <compression>best</compression>
+   </format>
+
+   <format name="PNG8_FAST" type ="PNG">
+      <compression>fast</compression>
+      <colors>256</colors>
+   </format>
+
+   <format name="PNG8_FAST" type ="PNG">
+      <compression>best</compression>
+      <colors>256</colors>
+   </format>
+
+   <format name="JPEG85_YCBCR" type ="JPEG">
+      <quality>85</quality>  
+      <photometric>YCBCR</photometric>   <!-- RGB | YCBCR -->
+      <optimize>true</optimize>  <!-- true | false | arithmetic -->
+   </format>
+
+   <format name="JPEG75_YCBCR" type ="JPEG">
+      <quality>75</quality>  
+      <photometric>YCBCR</photometric>   <!-- RGB | YCBCR -->
+      <optimize>true</optimize>  <!-- true | false | arithmetic -->
+   </format>
+
+   <format name="MIXED" type="MIXED">
+      <transparent>PNG_FAST</transparent>
+      <opaque>JPEG75_YCBCR</opaque>
+   </format>
+
+
    <!-- The source is used to defined which requests are gonna go with the cache and which ones are
         going to go to geoserver. No layers have been defined here because split_mirror mode is used (see above). -->
    <source name="eumetview" type="wms">
@@ -84,8 +121,12 @@
       </dimensions>
 
       <!-- format for storing the information. No format stored as received -->
-      <format>PNG</format>
+      <!--<format>PNG</format>
       <metatile>4 4</metatile>
+      <metabuffer>10</metabuffer>-->
+
+      <format>MIXED</format>
+      <metatile>1 1</metatile>
       <metabuffer>10</metabuffer>
 
       <!-- expires
