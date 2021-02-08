@@ -1,0 +1,124 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  creationTimestamp: "2020-12-16T13:35:17Z"
+  generation: 75
+  name: wms-geoserver-mapcache
+  namespace: wms
+  resourceVersion: "125930025"
+  selfLink: /apis/apps/v1/namespaces/wms/statefulsets/wms-geoserver-mapcache
+  uid: 8915870b-3fa3-11eb-8a71-02dac0c7f16c
+spec:
+  podManagementPolicy: OrderedReady
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: mapcache
+  serviceName: mapcache
+  template:
+    metadata:
+      annotations:
+        checksum/config: 6581ea8d275b997282f2d497ea4a1b6aeda0e00b68493f296d50b1b19aac04b9
+      creationTimestamp: null
+      labels:
+        app: mapcache
+    spec:
+      containers:
+      - image: harbor.cgi-dev.de/mapcache/mapcache:1.8
+        imagePullPolicy: Always
+        name: mapcache
+        ports:
+        - containerPort: 80
+          name: mapcache
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /cache
+          name: mapcache-tiles
+        - mountPath: /etc/mapcache/mapcache.xml
+          name: mapcache-configmap
+          subPath: mapcache.xml
+      - image: harbor.cgi-dev.de/geoserver/mapcache-cronjob:1.2
+        imagePullPolicy: Always
+        name: mapcache-cronjob
+        args:
+        - start-cron 
+        - "\\* \\* \\* \\* \\* /home/cleancache.sh /cache /home/layers.properties > /proc/1/fd/1 2>&1"
+        volumeMounts:
+        - mountPath: /cache
+          name: mapcache-tiles
+        - mountPath: /home/layers.properties
+          name: mapcache-cronjob-layers
+          subPath: layers.properties
+      - command:
+        - memcached
+        - -u memcached
+        - -p 11211
+        - -m 4000
+        - -c 2048
+        - -v
+        image: harbor.cgi-dev.de/memcached/memcached:1-debian-10
+        imagePullPolicy: Always
+        name: memcached
+        ports:
+        - containerPort: 11211
+          name: memcached
+          protocol: TCP
+        resources:
+          requests:
+            memory: 4000Mi
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: harbor-secret
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext:
+        fsGroup: 33
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - configMap:
+          defaultMode: 450
+          name: mapcache-configmap
+        name: mapcache-configmap
+      - configMap:
+          defaultMode: 450
+          name: mapcache-cronjob-layers
+        name: mapcache-cronjob-layers
+  updateStrategy:
+    rollingUpdate:
+      partition: 0
+    type: RollingUpdate
+  volumeClaimTemplates:
+  - apiVersion: v1
+    kind: PersistentVolumeClaim
+    metadata:
+      creationTimestamp: null
+      name: mapcache-tiles
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 10Gi
+      volumeMode: Filesystem
+    status:
+      phase: Pending
+status:
+  collisionCount: 0
+  currentReplicas: 1
+  currentRevision: wms-geoserver-mapcache-5546d96b8c
+  observedGeneration: 75
+  readyReplicas: 1
+  replicas: 1
+  updateRevision: wms-geoserver-mapcache-5546d96b8c
+  updatedReplicas: 1
+
