@@ -46,10 +46,20 @@ then
         if [ $folder_time_dimension_epoch -lt $diff_epoch ]
         then
           echo "   --> Deleting layers folders from time-dimension $folder with retkey > $retKey"
-          echo "   --> Layers: ${retention_times[$retKey]}"
+          echo "   --> Layers: "
+          IFS=' ' read -r -a folders_array <<< "${retention_times[$retKey]}"
+          for element in "${folders_array[@]}"
+          do
+            echo "              - $element"
+          done
           cd $folder
           rm -rdf ${retention_times[$retKey]}
           cd $caller
+          # if time-dimension folder is empty, delete it
+          rm -d $folder >/dev/null 2>&1
+          if [ $? -eq 0 ]; then
+            echo "   --> Time-Dimension folder $folder is empty. Deleted !"
+          fi
         fi
       fi
     done
