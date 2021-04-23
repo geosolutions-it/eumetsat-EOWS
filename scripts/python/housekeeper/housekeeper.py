@@ -1,7 +1,7 @@
 import psycopg2
 from psycopg2 import Error
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
 import sys
 from io import StringIO
 import smtplib, ssl, email
@@ -10,72 +10,93 @@ from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from retry import retry
+import pytz
+
+tries = int(os.getenv("TRIES"))
+delay = int(os.getenv("DELAY"))
+backoff = int(os.getenv("BACKOFF"))
+max_delay = int(os.getenv("MAX_DELAY"))
 
 
 def connect():
     """
     This a function to create a connection to the postgresql.
-    :param env:
+    :param user: user used to connect to database.
+    :param password: user used to connect to database.
+    :param host: user used to connect to database.
+    :param port: user used to connect to database.
+    :param database: user used to connect to database.
     :return:
     """
     try:
         # Connect to an existing database
-        connection = psycopg2.connect(user = os.getenv("DB_USER"),
-                                      password = os.getenv("DB_PASS"),
-                                      host = os.getenv("DB_HOST"),
-                                      port = os.getenv("DB_PORT"),
-                                      database = os.getenv("DB_NAME")
+        connection = psycopg2.connect(user=os.getenv("DB_USER"),
+                                      password=os.getenv("DB_PASS"),
+                                      host=os.getenv("DB_HOST"),
+                                      port=os.getenv("DB_PORT"),
+                                      database=os.getenv("DB_NAME")
                                       )
 
         # Create a cursor to perform database operations
-        # connection.autocommit()
-        cursor = connection.cursor()
-        record = cursor.fetchone()
-        print("You are connected to - ", record, "\n")
+        # cursor = connection.cursor()
+        return connection
 
     except (Exception, Error) as error:
         print("Error while connecting to PostgreSQL", error)
+        raise
 
-    return connection
 
 
-@retry((ValueError, TypeError), delay=1, backoff=2, max_delay=10)
+# use retry decorator to retry the make many attempts as need it if the delete failed.
+@retry((ValueError, TypeError), tries=tries, delay=delay, backoff=backoff, max_delay=max_delay)
 def getdata(conn, env="TABLE", tlimit="T_LIMIT"):
+    """
+    :param conn: connection parameter returned from connect function.
+    :param env: Name of the table where the query will be.
+    :param tlimit: date used as reference.
+    :return:
+    """
     table = os.getenv(env)
     sql_query = f'SELECT "location", ingestion FROM {table};'
     # sql_drop = f'DELETE FROM {table} WHERE ingestion < {datetime.fromtimestamp(mod_date)};'
-    time_limit = os.getenv(tlimit)
-    datetime_object = datetime.strptime(time_limit, '%Y-%m-%d %H:%M:%S')
+    tz = pytz.timezone(os.getenv("TZ"))  # set timezone
+    time_limit = int(os.getenv(tlimit))
+    t_now = datetime.now(tz=tz)
+    date_t = (t_now - timedelta(days = time_limit)).strftime('%Y-%m-%d %H:%M:%S')
+    datetime_object = datetime.strptime(date_t, '%Y-%m-%d %H:%M:%S')
 
     try:
         with conn.cursor() as curs:
             curs.execute(sql_query)
+            # Looping the data to get the time and the path of the files.
             for x in curs.fetchall():
                 filename = str(x[0])
                 mod_date = datetime.timestamp(x[1])
                 sql_drop = f"DELETE FROM {table} WHERE location = '{filename}';"
-                # print(filename, mod_date)
+                # Comparing the date of the db records to delete the olders than T_LIMIT
                 if mod_date < datetime.timestamp(datetime_object):
                     curs.execute(sql_drop)
-                    conn.commit()
+                    conn.commit()  # commiting the operation.
+                    # Printing the records that were deleted.
                     print(f'this entry has been deleted: {filename}, {mod_date}')
-                    # print(f'this entry has been deleted: {sql_drop}')
+                    # Deleting the files in the filesystem and printing the result.
                     # os.remove(filename)
                     # print(f'This file have been deleted: {filename}')
-            curs.close()
+                # curs.close()
     except (Exception, Error) as e:
+        print(e)
         with open('errors.txt', 'w') as a_writer:
-            a_writer.write(f'{filename}\n')
+            a_writer.write(f'Filename Path: \t\t\t timestamp:\n{filename} \t\t\t {mod_date}\n')
             a_writer.close()
         conn.rollback()
         raise e
+
 
 def notification():
     subject = "Cleaning Task is finished"
     body = "This is the file that contains the records that cuold not be deleted"
     sender_email = os.getenv("SENDER")
     receiver_email = os.getenv("RECEIVER")
-    # password = input("Type your password and press enter:")
     password = os.getenv("PASS")
 
     # Create a multipart message and set headers
