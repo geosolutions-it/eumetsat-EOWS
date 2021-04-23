@@ -80,8 +80,8 @@ def getdata(conn, env="TABLE", tlimit="T_LIMIT"):
                     # Printing the records that were deleted.
                     print(f'this entry has been deleted: {filename}, {mod_date}')
                     # Deleting the files in the filesystem and printing the result.
-                    # os.remove(filename)
-                    # print(f'This file have been deleted: {filename}')
+                    os.remove(filename)
+                    print(f'This file have been deleted: {filename}')
                 # curs.close()
     except (Exception, Error) as e:
         print(e)
@@ -140,4 +140,4 @@ def notification():
 
 if __name__ == '__main__':
     getdata(conn=connect(), env="TABLE", tlimit="T_LIMIT")
-    # notification()
+    notification()
