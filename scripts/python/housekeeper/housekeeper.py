@@ -2,8 +2,6 @@ import psycopg2
 from psycopg2 import Error
 import os
 from datetime import datetime, timedelta
-import sys
-from io import StringIO
 import smtplib, ssl, email
 from email import encoders
 from email.mime.base import MIMEBase
@@ -11,11 +9,18 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from retry import retry
 import pytz
+from environs import Env
+import logging
 
-tries = int(os.getenv("TRIES"))
-delay = int(os.getenv("DELAY"))
-backoff = int(os.getenv("BACKOFF"))
-max_delay = int(os.getenv("MAX_DELAY"))
+env = Env()
+env.read_env()
+print(env)
+tries = env.int("TRIES")
+delay = env.int("DELAY")
+backoff = env.int("BACKOFF")
+max_delay = env.int("MAX_DELAY")
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s %(name)s %(levelname)s:%(message)s')
+logger = logging.getLogger(__name__)
 
 
 def connect():
@@ -29,62 +34,68 @@ def connect():
     :return:
     """
     try:
-        # Connect to an existing database
-        connection = psycopg2.connect(user=os.getenv("DB_USER"),
-                                      password=os.getenv("DB_PASS"),
-                                      host=os.getenv("DB_HOST"),
-                                      port=os.getenv("DB_PORT"),
-                                      database=os.getenv("DB_NAME")
+        connection = psycopg2.connect(user=env("DB_USER"),
+                                      password=env("DB_PASS"),
+                                      host=env("DB_HOST"),
+                                      port=env("DB_PORT"),
+                                      database=env("DB_NAME")
                                       )
 
-        # Create a cursor to perform database operations
-        # cursor = connection.cursor()
+        logging.info("connected to database")
         return connection
 
     except (Exception, Error) as error:
-        print("Error while connecting to PostgreSQL", error)
+        logging.critical("Error while connecting to PostgreSQL", error)
         raise
-
 
 
 # use retry decorator to retry the make many attempts as need it if the delete failed.
 @retry((ValueError, TypeError), tries=tries, delay=delay, backoff=backoff, max_delay=max_delay)
-def getdata(conn, env="TABLE", tlimit="T_LIMIT"):
+def getdata(conn):
     """
     :param conn: connection parameter returned from connect function.
-    :param env: Name of the table where the query will be.
-    :param tlimit: date used as reference.
     :return:
     """
-    table = os.getenv(env)
-    sql_query = f'SELECT "location", ingestion FROM {table};'
-    # sql_drop = f'DELETE FROM {table} WHERE ingestion < {datetime.fromtimestamp(mod_date)};'
-    tz = pytz.timezone(os.getenv("TZ"))  # set timezone
-    time_limit = int(os.getenv(tlimit))
+    # table = env(o_table)
+    table = env.str("TABLE")
+    time_limit = env.int("T_LIMIT")
+    schema = env.str("SCHEMA")
+    fields = env("FIELDS")
+    tz = pytz.timezone(env("TZ"))  # set timezone
     t_now = datetime.now(tz=tz)
-    date_t = (t_now - timedelta(days = time_limit)).strftime('%Y-%m-%d %H:%M:%S')
-    datetime_object = datetime.strptime(date_t, '%Y-%m-%d %H:%M:%S')
+    date_t = (t_now - timedelta(days=time_limit)).strftime('%Y-%m-%d %H:%M:%S.%f')
+    sql_query = f'SELECT {fields} FROM {schema}."{table}" WHERE \'{date_t}\' > "{table}".ingestion;'
 
     try:
         with conn.cursor() as curs:
+            logging.info("Quering the database")
             curs.execute(sql_query)
             # Looping the data to get the time and the path of the files.
+            batch = env.int("BATCH")
             for x in curs.fetchall():
+                curs.itersize = batch
                 filename = str(x[0])
-                mod_date = datetime.timestamp(x[1])
-                sql_drop = f"DELETE FROM {table} WHERE location = '{filename}';"
+                mod_date = str(x[1])
+                sql_drop = f'DELETE FROM {schema}."{table}" WHERE \'{date_t}\' < "{table}".ingestion;'
+                # sql_show = f'SELECT * FROM {schema}."{table}" WHERE \'{date_t}\' > "{table}".ingestion;'
+
+                with open('files.txt', 'w') as a_writer:
+                    a_writer.write(f'{filename}\n')
+                    a_writer.close()
                 # Comparing the date of the db records to delete the olders than T_LIMIT
-                if mod_date < datetime.timestamp(datetime_object):
-                    curs.execute(sql_drop)
-                    conn.commit()  # commiting the operation.
-                    # Printing the records that were deleted.
-                    print(f'this entry has been deleted: {filename}, {mod_date}')
-                    # Deleting the files in the filesystem and printing the result.
-                    os.remove(filename)
-                    print(f'This file have been deleted: {filename}')
-                # curs.close()
+                curs.execute(sql_drop)
+                conn.commit()  # commiting the operation.
+                with open('files.txt', 'r') as a_reader:
+                    for line in a_reader:
+                        os.remove(filename)
+                        logging.info(f'This file have been deleted: {filename}')
+                    a_reader.close()
+                if os.path.exists("files.txt"):
+                    os.remove("files.txt")
+        conn.close()
     except (Exception, Error) as e:
         print(e)
+        logging.error(e)
         with open('errors.txt', 'w') as a_writer:
             a_writer.write(f'Filename Path: \t\t\t timestamp:\n{filename} \t\t\t {mod_date}\n')
             a_writer.close()
@@ -95,9 +106,9 @@ def getdata(conn, env="TABLE", tlimit="T_LIMIT"):
 def notification():
     subject = "Cleaning Task is finished"
     body = "This is the file that contains the records that cuold not be deleted"
-    sender_email = os.getenv("SENDER")
-    receiver_email = os.getenv("RECEIVER")
-    password = os.getenv("PASS")
+    sender_email = env("SENDER")
+    receiver_email = env("RECEIVER")
+    password = env("PASS")
 
     # Create a multipart message and set headers
     message = MIMEMultipart()
@@ -139,5 +150,5 @@ def notification():
 
 
 if __name__ == '__main__':
-    getdata(conn=connect(), env="TABLE", tlimit="T_LIMIT")
+    getdata(conn=connect())
     notification()
