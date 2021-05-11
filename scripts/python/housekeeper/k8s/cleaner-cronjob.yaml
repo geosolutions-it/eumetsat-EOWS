@@ -1,0 +1,112 @@
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: imagemosaiccleaner
+spec:
+  schedule: "30 9,13,17 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          volumes:
+            - name: geoserver-data
+              persistentVolumeClaim:
+                claimName: wms-geosolutions-dev-wms-geoserver-data-pvc
+          containers:
+            - name: imagemosaiccleaner
+              image: harbor.cgi-dev.de/geoserver/housekeeper:dev
+              env:
+                - name: FIELDS
+                  valueFrom:
+                    configMapKeyRef:
+                      name: cleaner-config
+                      key: FIELDS
+                - name: BATCH
+                  valueFrom:
+                    configMapKeyRef:
+                      name: cleaner-config
+                      key: BATCH
+                - name: SENDER
+                  valueFrom:
+                    configMapKeyRef:
+                      name: cleaner-config
+                      key: SENDER
+                - name: RECEIVER
+                  valueFrom:
+                    configMapKeyRef:
+                      name: cleaner-config
+                      key: RECEIVER
+                - name: PASS
+                  valueFrom:
+                    configMapKeyRef:
+                      name: cleaner-config
+                      key: PASS
+                - name: DB_USER
+                  valueFrom:
+                    configMapKeyRef:
+                      name: cleaner-config
+                      key: DB_USER
+                - name: DB_PASS
+                  valueFrom:
+                    configMapKeyRef:
+                      name: cleaner-config
+                      key: DB_PASS
+                - name: DB_HOST
+                  valueFrom:
+                    configMapKeyRef:
+                      name: cleaner-config
+                      key: DB_HOST
+                - name: DB_NAME
+                  valueFrom:
+                    configMapKeyRef:
+                      name: cleaner-config
+                      key: DB_NAME
+                - name: DB_PORT
+                  valueFrom:
+                    configMapKeyRef:
+                      name: cleaner-config
+                      key: DB_PORT
+                - name: TRIES
+                  valueFrom:
+                    configMapKeyRef:
+                      name: cleaner-config
+                      key: TRIES
+                - name: DELAY
+                  valueFrom:
+                    configMapKeyRef:
+                      name: cleaner-config
+                      key: DELAY
+                - name: BACKOFF
+                  valueFrom:
+                    configMapKeyRef:
+                      name: cleaner-config
+                      key: BACKOFF
+                - name: MAX_DELAY
+                  valueFrom:
+                    configMapKeyRef:
+                      name: cleaner-config
+                      key: MAX_DELAY
+                - name: TZ
+                  valueFrom:
+                    configMapKeyRef:
+                      name: cleaner-config
+                      key: TZ
+                - name: GLOBAL_RETENTION
+                  valueFrom:
+                    configMapKeyRef:
+                      name: cleaner-config
+                      key: GLOBAL_RETENTION
+                - name: LAYERS
+                  valueFrom:
+                    configMapKeyRef:
+                      name: cleaner-config
+                      key: LAYERS
+
+              imagePullPolicy: Always
+              volumeMounts:
+                - mountPath: /var/geoserver/data
+                  name: geoserver-data
+          restartPolicy: OnFailure
+          imagePullSecrets:
+           - name: harbor-secret

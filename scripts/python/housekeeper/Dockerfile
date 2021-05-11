@@ -5,6 +5,6 @@ WORKDIR /code
 COPY requirements.txt /code/requirements.txt
 RUN pip3 install -r requirements.txt
 
-COPY housekeeping.py /code/housekeeping.py
+COPY housekeeper.py /code/housekeeper.py
 
 CMD ["python3", "housekeeper.py"]
