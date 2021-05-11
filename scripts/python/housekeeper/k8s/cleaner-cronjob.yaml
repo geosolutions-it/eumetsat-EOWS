@@ -39,9 +39,9 @@ spec:
                       key: RECEIVER
                 - name: PASS
                   valueFrom:
-                    configMapKeyRef:
-                      name: cleaner-config
-                      key: PASS
+                    secretKeyRef:
+                      name: cleaner-email-pass
+                      key: password
                 - name: DB_USER
                   valueFrom:
                     configMapKeyRef:
@@ -49,24 +49,18 @@ spec:
                       key: DB_USER
                 - name: DB_PASS
                   valueFrom:
-                    configMapKeyRef:
-                      name: cleaner-config
-                      key: DB_PASS
+                    secretKeyRef:
+                      name: cleaner-db-pass
+                      key: password
                 - name: DB_HOST
-                  valueFrom:
-                    configMapKeyRef:
-                      name: cleaner-config
-                      key: DB_HOST
+                  value: $(POSTGRES_SERVICE_HOST)
                 - name: DB_NAME
                   valueFrom:
                     configMapKeyRef:
                       name: cleaner-config
                       key: DB_NAME
                 - name: DB_PORT
-                  valueFrom:
-                    configMapKeyRef:
-                      name: cleaner-config
-                      key: DB_PORT
+                  value: $(POSTGRES_PORT_5432_TCP_PORT)
                 - name: TRIES
                   valueFrom:
                     configMapKeyRef:
@@ -102,11 +96,15 @@ spec:
                     configMapKeyRef:
                       name: cleaner-config
                       key: LAYERS
-
+                - name: COLUMN_TIME
+                  valueFrom:
+                    configMapKeyRef:
+                      name: cleaner-config
+                      key: COLUMN_TIME
               imagePullPolicy: Always
               volumeMounts:
                 - mountPath: /var/geoserver/data
                   name: geoserver-data
           restartPolicy: OnFailure
           imagePullSecrets:
-           - name: harbor-secret
+          - name: harbor-secret
