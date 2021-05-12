@@ -34,41 +34,47 @@
     - ```shell
         python3 housekeeper.py
       ```
-2. You can build a Docker image, running:
-    ```shell
-    docker build -t <registry/tag> .
-    ```
-    - to run the docker image you should have a .env file with all the env variables declare there.
-      ```shell
-        docker run --env-file .env -d <registry/tag>
-      ```
 
 ### Deployment of the script to kubernetes.
 
 1. Go to the directory where the files for deploy to Kubernetes are:
     ```shell
-    cd k8s/
+    cd helm/
     ```
 2. The content of the directory should look like follow:
 ```shell
 .
-├── .env.example
-├── cleaner-cronjob.yaml
-└── kustomization.yaml
+└── imagemosaic-cleaner
+    ├── Chart.yaml
+    ├── templates
+    │         ├── NOTES.txt
+    │         ├── _helpers.tpl
+    │         ├── configmap.yaml
+    │         ├── cronjob.yaml
+    │         └── secrets.yaml
+    └── values.yaml
 ```
-  - `.env.example` where the environment variables are. 
-  *NOTE* this file need to be modified with the values that you need for your cluster.
-  - `cleaner-cronjob.yaml` the deployment of the cronjob.
-  - `kustomization.yaml` the kustomize file where the whole deployment occurred.
 
-2. Create the full deployment for the Script with the kustomization.yaml file.
+2. Create the full deployment for the Script with helm.
   ```shell
-  kubectl create -k .
+  helm install -n <namespace> <name-of-the-app> imagemosaic-cleaner/
   ```
+  - ex:
+    ```shell
+    helm install -n geosolutions housekeeper imagemosaic-cleaner/
+    ```
   - the output of that command:
     ```shell
-    configmap/cleaner-config-855569dg4b created
-    secret/cleaner-db-pass-9dg7b6859m created
-    secret/cleaner-email-pass-bf4gmmd755 created
-    cronjob.batch/imagemosaiccleaner created
-    ```
+    NAME: housekeeper
+    LAST DEPLOYED: Wed May 12 10:25:28 2021
+    NAMESPACE: geosolutions
+    STATUS: deployed
+    REVISION: 1
+    TEST SUITE: None
+    NOTES:
+    1. Check if cronjob was installed:
+       kubectl --namespace geosolutions get cronjob
+    
+    2. Run it once as a job:
+       kubectl --namespace geosolutions create job 0-test --from=cronjob/housekeeper-imagemosaic-cleaner-0
+        ```
