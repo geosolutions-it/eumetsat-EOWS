@@ -32,12 +32,15 @@ batch = env.int("BATCH")
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s %(app_name)s %(levelname)s:%(message)s')
 layer_name = ""
 
+
 # Creating classes to manipulate the logs.
 class AppFilter(logging.Filter):
     filter_name = ""
+
     def filter(self, record):
         record.app_name = self.filter_name
         return True
+
 
 class OneLineExceptionFormatter(logging.Formatter):
     def formatException(self, exc_info):
@@ -49,6 +52,8 @@ class OneLineExceptionFormatter(logging.Formatter):
         if record.exc_text:
             result = result.replace("\n", "")
         return result
+
+
 # Setting the logger to the systemd.
 handler = logging.StreamHandler()
 formatter = OneLineExceptionFormatter(logging.BASIC_FORMAT)
@@ -57,7 +62,7 @@ cleaner = logging.getLogger(layer_name)
 cleaner.setLevel(os.environ.get("LOGLEVEL", "INFO"))
 filter = AppFilter()
 cleaner.addFilter(filter)
-cleaner.addHandler(handler)
+# cleaner.addHandler(handler)
 
 
 def connect():
@@ -116,27 +121,13 @@ def getdata(conn, time_limit, schema, table, col_time_name):
                     filename = str(x[0])
                     mod_date = str(x[1])
                     sql_drop = f'DELETE FROM {schema}."{table}" WHERE \'{date_t}\' > "{table}".{col_time_name};'
-                    # writing the the records in a file to delete after.
-                    with open('files.txt', 'w') as a_writer:
-                        a_writer.write(f'{filename}\n')
-                        cleaner.info(f"writing the {filename} record to delete later")
-                        a_writer.close()
                     # Comparing the date of the db records to delete the olders than date_t
                     cleaner.info("deleting the entries in the database")
                     cleaner.info(curs.execute(sql_drop))
                     cleaner.info(curs.statusmessage)
-                    with open('files.txt', 'r') as a_reader:
-                        for line in a_reader:
-                            try:
-                                if os.path.exists(filename):
-                                    os.remove(filename)
-                                    cleaner.info(f'This file have been deleted: {filename}')
-                            except (Exception, Error) as er:
-                                cleaner.error(er)
-                        a_reader.close()
-                    if os.path.exists("files.txt"):
-                        cleaner.info("deleting the path container file")
-                        os.remove("files.txt")
+                    if os.path.exists(filename):
+                        os.remove(filename)
+                        cleaner.info(f'This file have been deleted: {filename}')
             else:
                 cleaner.info("Nothing to clean. See you on the next Cleaning")
         conn.close()
@@ -148,6 +139,7 @@ def getdata(conn, time_limit, schema, table, col_time_name):
             a_writer.close()
         conn.rollback()
         raise e
+
 
 def notification():
     cleaner.info("creating the email to send")
@@ -202,6 +194,7 @@ def notification():
         server.login(sender_email, password)
         server.sendmail(sender_email, receiver_email, text)
 
+
 def housekeeper():
     # Setting up the function to start the process.
     cleaner.info("Starting the Cleaning Process.")
@@ -219,14 +212,16 @@ def housekeeper():
         # Implementing the granule housekeeping process configuration.
         if global_retention_time > 0:
             cleaner.info(f"Running the Housekeeper script with the Global Retention Time: {global_retention_time}")
-            getdata(conn=connect(), time_limit=global_retention_time, schema=schema, table=table, col_time_name=column_time)
+            getdata(conn=connect(), time_limit=global_retention_time, schema=schema, table=table,
+                    col_time_name=column_time)
         else:
             cleaner.info(f"Running the Housekeeper script with the Layer Retention Time: {layer_time}")
             getdata(conn=connect(), time_limit=layer_time, schema=schema, table=table, col_time_name=column_time)
 
     # Sending a email when the job is done.
-    notification()
+    # notification()
     cleaner.info("DONE")
+
 
 if __name__ == '__main__':
     housekeeper()

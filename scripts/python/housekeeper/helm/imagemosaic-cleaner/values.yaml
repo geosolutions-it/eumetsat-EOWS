@@ -44,29 +44,9 @@ configMaps:
   cleaner-config:
     data:
       FIELDS: location,time
+      COLUMN_TIME: time
       GLOBAL_RETENTION: ALL,120
       LAYERS: '"copernicus:sentinel3b;mosaic_indexes.copernicus_sentinel3a_olci_l2_chl_fullres;360","copernicus:sentinel3b;mosaic_indexes.copernicus_sentinel3b_olci_l1_rgb_fullres;120","copernicus_daily:sentinel3ab;mosaic_indexes.copernicus_daily_sentinel3ab_olci_l1_rgb_fulres;120","copernicus:sentinel3a;mosaic_indexes.copernicus_sentinel3a_olci_l1_rgb_fullres;120"'
-
-
-#  # name of the configMap
-#  config:
-#    data:
-#      # everything below is uses "as-is" in the configMap
-#      config.ini: |-
-#        # config
-#        [global]
-#          mykey = value
-#      cert.key: "<base64 encoded certificate>"
-#  scripts:
-#    data:
-#      start.sh: |-
-#        #!/bin/sh
-#        trap 'echo "quitting"' QUIT
-#    # from files: requires files to be in the chart directory!
-#    # it's easier to use separate yaml files
-#    # see https://github.com/helm/helm/issues/3276#issuecomment-353066972
-#    files:
-#      example.sh: ci/files/example.sh
 
 # environment variables for all jobs
 env: []

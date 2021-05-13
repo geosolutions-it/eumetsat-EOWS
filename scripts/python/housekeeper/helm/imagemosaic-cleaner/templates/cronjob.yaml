@@ -50,8 +50,13 @@ spec:
                   value: "2"
                 - name: BATCH
                   value: "10"
+{{/*                - name: COLUMN_TIME*/}}
+{{/*                  value: time*/}}
                 - name: COLUMN_TIME
-                  value: time
+                  valueFrom:
+                    configMapKeyRef:
+                      name: cleaner-config
+                      key: COLUMN_TIME
                 - name: DB_NAME
                   value: eumetsat
                 - name: DB_USER
