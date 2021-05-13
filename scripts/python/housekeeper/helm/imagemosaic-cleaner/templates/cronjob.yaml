@@ -61,9 +61,9 @@ spec:
                 - name: MAX_DELAY
                   value: "4"
                 - name: RECEIVER
-                  value: asdrubal.gonzalez@geo-solutions.it
+                  value: monitoring@example.com
                 - name: SENDER
-                  value: agpenton89@gmail.com
+                  value: cleaner@example.com
                 - name: TRIES
                   value: "10"
                 - name: TZ

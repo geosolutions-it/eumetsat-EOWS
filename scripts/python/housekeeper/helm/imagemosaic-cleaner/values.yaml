@@ -24,10 +24,10 @@ imagePullSecrets:
 secrets:
   cleaner-email-pass:
     data:
-      password: "iduzwucgdmhzaecc"
+      password: "somePassword"
   cleaner-db-pass:
     data:
-      password: "295Eumetsat12592!"
+      password: "AnotherPassword"
 #  # strings and file contents are automatically base64 encoded
 #  ssh-creds:
 #    data:
@@ -71,7 +71,7 @@ configMaps:
 # environment variables for all jobs
 env: []
 
- jobs: {}
+jobs: {}
 
 
 serviceAccount:
