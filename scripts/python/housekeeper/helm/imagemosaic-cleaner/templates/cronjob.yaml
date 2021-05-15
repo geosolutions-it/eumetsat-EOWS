@@ -19,7 +19,7 @@ spec:
                 claimName: wms-geosolutions-dev-wms-geoserver-data-pvc
           containers:
             - name: imagemosaiccleaner
-              image: {{ .Values.image.registry}}.{{ .Values.image.repository}}/{{ .Values.image.tag}}
+              image: {{ .Values.image.registry}}/{{ .Values.image.repository }}:{{ .Values.image.tag}}
               env:
                 - name: FIELDS
                   valueFrom:
