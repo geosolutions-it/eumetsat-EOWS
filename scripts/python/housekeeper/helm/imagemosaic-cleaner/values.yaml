@@ -11,7 +11,7 @@ image:
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 imagePullSecrets:
-  - name: harbor-secret
+  name: harbor-secret
 
 # will create a kubernetes.io/dockerconfigjson secret
 # and add it to imagePullSecrets
@@ -51,7 +51,12 @@ configMaps:
 # environment variables for all jobs
 env: []
 
-jobs: {}
+jobs:
+  spec:
+    schedule: "* 10,15 * * *"
+    concurrencyPolicy: Forbid
+    failedJobsHistoryLimit: 1
+    successfulJobsHistoryLimit: 3
 
 
 serviceAccount:

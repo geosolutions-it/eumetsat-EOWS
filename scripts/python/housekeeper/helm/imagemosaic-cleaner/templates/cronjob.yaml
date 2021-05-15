@@ -4,7 +4,11 @@ kind: CronJob
 metadata:
   name: imagemosaiccleaner
 spec:
-  schedule: "*/3 * * * *"
+{{/*  schedule:  */}}
+  schedule: {{ .Values.jobs.spec.schedule | quote }}
+  concurrencyPolicy: {{ .Values.jobs.spec.concurrencyPolicy }}
+  failedJobsHistoryLimit: {{ .Values.jobs.spec.failedJobsHistoryLimit }}
+  successfulJobsHistoryLimit: {{ .Values.jobs.spec.successfulJobsHistoryLimit }}
   jobTemplate:
     spec:
       template:
@@ -15,7 +19,7 @@ spec:
                 claimName: wms-geosolutions-dev-wms-geoserver-data-pvc
           containers:
             - name: imagemosaiccleaner
-              image: harbor.cgi-dev.de/geoserver/housekeeper:dev
+              image: {{ .Values.image.registry}}.{{ .Values.image.repository}}/{{ .Values.image.tag}}
               env:
                 - name: FIELDS
                   valueFrom:
@@ -73,10 +77,18 @@ spec:
                   value: "10"
                 - name: TZ
                   value: Europe/Rome
-              imagePullPolicy: Always
+              imagePullPolicy: {{ .Values.image.pullPolicy }}
               volumeMounts:
                 - mountPath: /var/geoserver/data
                   name: geoserver-data
+              resources:
+                limits:
+                  cpu: {{ .Values.resources.limits.cpu }}
+                  memory: {{ .Values.resources.limits.memory }}
+                requests:
+                  cpu: {{ .Values.resources.requests.cpu }}
+                  memory: {{ .Values.resources.requests.memory }}
+
           restartPolicy: OnFailure
           imagePullSecrets:
-          - name: harbor-secret
+          - name: {{ .Values.imagePullSecrets.name }}
