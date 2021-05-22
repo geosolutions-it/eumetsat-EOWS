@@ -1,0 +1,94 @@
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: imagemosaiccleaner
+spec:
+{{/*  schedule:  */}}
+  schedule: {{ .Values.jobs.spec.schedule | quote }}
+  concurrencyPolicy: {{ .Values.jobs.spec.concurrencyPolicy }}
+  failedJobsHistoryLimit: {{ .Values.jobs.spec.failedJobsHistoryLimit }}
+  successfulJobsHistoryLimit: {{ .Values.jobs.spec.successfulJobsHistoryLimit }}
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          volumes:
+            - name: geoserver-data
+              persistentVolumeClaim:
+                claimName: wms-geosolutions-dev-wms-geoserver-data-pvc
+          containers:
+            - name: imagemosaiccleaner
+              image: {{ .Values.image.registry}}/{{ .Values.image.repository }}:{{ .Values.image.tag}}
+              env:
+                - name: FIELDS
+                  valueFrom:
+                    configMapKeyRef:
+                      name: cleaner-config
+                      key: FIELDS
+                - name: PASS
+                  valueFrom:
+                    secretKeyRef:
+                      name: cleaner-email-pass
+                      key: password
+                - name: DB_PASS
+                  valueFrom:
+                    secretKeyRef:
+                      name: cleaner-db-pass
+                      key: password
+                - name: GLOBAL_RETENTION
+                  valueFrom:
+                    configMapKeyRef:
+                      name: cleaner-config
+                      key: GLOBAL_RETENTION
+                - name: LAYERS
+                  valueFrom:
+                    configMapKeyRef:
+                      name: cleaner-config
+                      key: LAYERS
+                - name: DB_HOST
+                  value: $(POSTGRES_SERVICE_HOST)
+                - name: DB_PORT
+                  value: $(POSTGRES_PORT_5432_TCP_PORT)
+                - name: BACKOFF
+                  value: "2"
+                - name: BATCH
+                  value: "10"
+{{/*                - name: COLUMN_TIME*/}}
+{{/*                  value: time*/}}
+                - name: COLUMN_TIME
+                  valueFrom:
+                    configMapKeyRef:
+                      name: cleaner-config
+                      key: COLUMN_TIME
+                - name: DB_NAME
+                  value: eumetsat
+                - name: DB_USER
+                  value: eumetsat
+                - name: DELAY
+                  value: "1"
+                - name: MAX_DELAY
+                  value: "4"
+                - name: RECEIVER
+                  value: monitoring@example.com
+                - name: SENDER
+                  value: cleaner@example.com
+                - name: TRIES
+                  value: "10"
+                - name: TZ
+                  value: Europe/Rome
+              imagePullPolicy: {{ .Values.image.pullPolicy }}
+              volumeMounts:
+                - mountPath: /var/geoserver/data
+                  name: geoserver-data
+              resources:
+                limits:
+                  cpu: {{ .Values.resources.limits.cpu }}
+                  memory: {{ .Values.resources.limits.memory }}
+                requests:
+                  cpu: {{ .Values.resources.requests.cpu }}
+                  memory: {{ .Values.resources.requests.memory }}
+
+          restartPolicy: OnFailure
+          imagePullSecrets:
+          - name: {{ .Values.imagePullSecrets.name }}

@@ -1,0 +1,19 @@
+---
+apiVersion: v2
+name: imagemosaic-cleaner
+description: A chart for Kubernetes cron jobs
+type: application
+version: 0.0.1
+appVersion: latest
+keywords:
+  - cronjob
+home: "https://github.com/geosolutions-it/eumetsat-EOWS"
+sources:
+  - "https://github.com/geosolutions-it/eumetsat-EOWS"
+maintainers:
+  - name: agpenton
+    email: asdrubal.gonzalez@geo-solutions.it
+    url: https://github.com/agpenton
+  - name: randomorder
+    email: alessa.parma@geo-solutions.it
+    url: https://github.com/randomorder
